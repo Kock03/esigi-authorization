@@ -17,7 +17,7 @@ export class ModuleEntity {
     @Column()
     inactive: boolean;
 
-    @OneToMany(() => ScreensEntity, screens => screens.Module, { nullable: true })
+    @OneToMany(() => ScreensEntity, screens => screens.Module)
     Screens: ScreensEntity[];
 
     @ManyToMany(() => RoleEntity, (roles) => roles.Modules)

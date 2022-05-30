@@ -39,9 +39,16 @@ export class RoleService {
     }
 
     async update(id: string, data: UpdateRoleDto) {
-        const role = await this.findOneOrFail({ id });
-        this.rolesRepository.merge(role, data);
-        return await this.rolesRepository.save(role);
+        try {
+            const role = await this.rolesRepository.findOneOrFail({
+                id,
+            });
+        } catch {
+            throw new NotFoundException();
+        }
+
+        return await this.rolesRepository.save({ id: id, ...data });
+
     }
 
     async destroy(id: string) {

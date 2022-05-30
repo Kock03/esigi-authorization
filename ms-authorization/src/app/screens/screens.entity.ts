@@ -20,7 +20,7 @@ export class ScreensEntity {
     @ManyToOne(() => ModuleEntity, module => module.Screens)
     Module: ModuleEntity;
 
-    @ManyToMany(() => RoleEntity, (roles) => roles.Screens, { nullable: true })
+    @ManyToMany(() => RoleEntity, (roles) => roles.Screens)
     Roles: RoleEntity[];
 
     @CreateDateColumn({ type: 'datetime' })

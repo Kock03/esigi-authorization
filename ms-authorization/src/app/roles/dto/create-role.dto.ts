@@ -12,8 +12,8 @@ export class CreateRoleDto {
     name: string;
 
     @IsOptional()
-    Modules: ModuleEntity;
+    Modules: ModuleEntity[];
 
     @IsOptional()
-    Screens: ScreensEntity;
+    Screens: ScreensEntity[];
 }
