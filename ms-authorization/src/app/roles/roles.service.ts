@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, FindConditions, FindOneOptions } from 'typeorm';
+import { Repository, FindConditions, FindOneOptions, FindManyOptions } from 'typeorm';
 import { CreateRoleDto } from './dto/create-role.dto';
 import { UpdateRoleDto } from './dto/update-role.dto';
 import { RoleEntity } from './role.entity';
@@ -13,19 +13,28 @@ export class RoleService {
         private readonly rolesRepository: Repository<RoleEntity>,
     ) { }
 
-    async findAll() {
-        const rolesWithProfiles = await this.rolesRepository
-            .createQueryBuilder('roles')
-            .leftJoinAndSelect('roles.profiles', 'profiles')
-            .getMany();
+    // async findAll() {
+    //     const rolesWithProfiles = await this.rolesRepository
+    //         .createQueryBuilder('roles')
+    //         .leftJoinAndSelect('roles.profiles', 'profiles')
+    //         .getMany();
 
-        return rolesWithProfiles;
+    //     return rolesWithProfiles;
+    // }
+
+
+    async findAll() {
+        const options: FindManyOptions = {
+            order: { createdAt: 'DESC' },
+        };
+        return await this.rolesRepository.find(options);
     }
 
     async findOneOrFail(
         conditions: FindConditions<RoleEntity>,
         options?: FindOneOptions<RoleEntity>,
     ) {
+        options = { relations: ['Modules', 'Screens'] };
         try {
             return await this.rolesRepository.findOneOrFail(conditions, options);
         } catch (error) {

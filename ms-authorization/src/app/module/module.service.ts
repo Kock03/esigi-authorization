@@ -24,6 +24,7 @@ export class ModuleService {
         conditions: FindConditions<ModuleEntity>,
         options?: FindOneOptions<ModuleEntity>,
     ) {
+        options = { relations: ['Screens'] };
         try {
             return await this.moduleService.findOneOrFail(
                 conditions,

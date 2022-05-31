@@ -5,14 +5,19 @@ import { UpdateRoleDto } from './dto/update-role.dto';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('api/v1/roles')
-@UseGuards(AuthGuard('jwt'))
 export class RoleController {
     constructor(private readonly rolesService: RoleService) { }
+
+    // @Get()
+    // async index() {
+    //     return await this.rolesService.findAll();
+    // }
 
     @Get()
     async index() {
         return await this.rolesService.findAll();
     }
+
 
     @Post()
     async store(@Body() body: CreateRoleDto) {

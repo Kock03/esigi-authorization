@@ -1,10 +1,10 @@
+import { ApiProperty } from "@nestjs/swagger";
 import { IsNotEmpty, IsString, IsNumber, IsOptional } from "class-validator";
 import { ScreensEntity } from "src/app/screens/screens.entity";
 
 export class CreateModuleDto {
 
-    @IsNumber()
-    @IsNotEmpty()
+    @ApiProperty()
     identifier: number;
 
     @IsString()

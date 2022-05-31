@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BeforeInsert, Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { ModuleEntity } from "../module/module.entity";
 import { RoleEntity } from "../roles/role.entity";
 
@@ -32,5 +32,9 @@ export class ScreensEntity {
     @DeleteDateColumn({ type: 'datetime' })
     deletedAt: Date;
 
+    @BeforeInsert()
+    InsertIdentifier() {
+        this.identifier = Math.floor(Math.random() * 65536);
+    }
 
 }

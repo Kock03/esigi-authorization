@@ -1,10 +1,10 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinTable, ManyToMany, ManyToOne, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { BeforeInsert, Column, CreateDateColumn, DeleteDateColumn, Entity, JoinTable, ManyToMany, ManyToOne, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { ModuleEntity } from '../module/module.entity';
 import { ScreensEntity } from '../screens/screens.entity';
 
 @Entity()
 export class RoleEntity {
-    
+
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
@@ -31,6 +31,9 @@ export class RoleEntity {
     @DeleteDateColumn({ name: 'deleted_at', type: 'datetime' })
     deletedAt: Date;
 
-
+    @BeforeInsert()
+    InsertIdentifier() {
+        this.identifier = Math.floor(Math.random() * 65536);
+    }
 
 }
