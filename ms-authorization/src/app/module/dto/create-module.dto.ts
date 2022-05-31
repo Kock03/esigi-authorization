@@ -11,4 +11,7 @@ export class CreateModuleDto {
     @IsNotEmpty()
     name: string;
 
+    @IsNotEmpty()
+    inactive: boolean;
+
 }

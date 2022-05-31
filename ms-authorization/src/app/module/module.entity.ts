@@ -1,4 +1,4 @@
-import { BeforeInsert, Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BeforeInsert, Column, CreateDateColumn, DeleteDateColumn, Entity, Generated, ManyToMany, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { RoleEntity } from "../roles/role.entity";
 import { ScreensEntity } from "../screens/screens.entity";
 
@@ -35,6 +35,7 @@ export class ModuleEntity {
     @BeforeInsert()
     InsertIdentifier() {
         this.identifier = Math.floor(Math.random() * 65536);
+
     }
 
 }

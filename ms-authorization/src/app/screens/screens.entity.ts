@@ -15,7 +15,8 @@ export class ScreensEntity {
     name: string;
 
     @Column()
-    inactive: boolean;
+    inactive: boolean
+        ;
 
     @ManyToOne(() => ModuleEntity, module => module.Screens)
     Module: ModuleEntity;

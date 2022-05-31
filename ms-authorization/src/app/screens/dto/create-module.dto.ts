@@ -12,6 +12,9 @@ export class CreateScreensDto {
     name: string;
 
     @IsNotEmpty()
+    inactive: boolean;
+
+    @IsNotEmpty()
     Module: ModuleEntity;
 
 }
