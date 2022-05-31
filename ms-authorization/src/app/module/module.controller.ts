@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Post, Put, Query } from '@nestjs/common';
 import { CreateModuleDto } from './dto/create-module.dto';
 import { UpdateModuleDto } from './dto/update-module.dto';
 import { ModuleService } from './module.service';
@@ -16,6 +16,12 @@ export class ModuleController {
     async show(@Param('id', new ParseUUIDPipe()) id: string) {
         return await this.moduleService.findOneOrFail({ id });
     }
+
+    @Get('find/name')
+    async findByName(@Query() query: any) {
+        return this.moduleService.findByName(query);
+    }
+
 
     @Post()
     async store(@Body() body: CreateModuleDto) {
