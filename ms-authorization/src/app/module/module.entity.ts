@@ -20,9 +20,6 @@ export class ModuleEntity {
     @OneToMany(() => ScreensEntity, screens => screens.Module)
     Screens: ScreensEntity[];
 
-    @ManyToMany(() => RoleEntity, (roles) => roles.Modules)
-    Roles: RoleEntity[];
-
     @CreateDateColumn({ type: 'datetime' })
     createdAt: Date;
 

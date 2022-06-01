@@ -1,6 +1,12 @@
-import { BeforeInsert, Column, CreateDateColumn, DeleteDateColumn, Entity, JoinTable, ManyToMany, ManyToOne, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+
+import { BeforeInsert, Column, CreateDateColumn, DeleteDateColumn, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { AcessEntity } from '../acess/acess.entity';
+import { AddEntity } from '../add/add.entity';
+import { DeleteEntity } from '../delete/delete.entity';
 import { ModuleEntity } from '../module/module.entity';
+import { ProfilesEntity } from '../profiles/profiles.entity';
 import { ScreensEntity } from '../screens/screens.entity';
+import { UpdateEntity } from '../update/update.entity';
 
 @Entity()
 export class RoleEntity {
@@ -9,18 +15,26 @@ export class RoleEntity {
     id: string;
 
     @Column()
-    name: String;
-
-    @Column()
     identifier: number;
 
-    @ManyToMany(() => ModuleEntity, (modules) => modules.Roles)
+    @OneToMany(() => AcessEntity, Acess => Acess.Role)
     @JoinTable()
-    Modules: ModuleEntity[]
+    Acess: AcessEntity[];
 
-    @ManyToMany(() => ScreensEntity, (screens) => screens.Roles)
+    @OneToMany(() => AddEntity, add => add.Role)
     @JoinTable()
-    Screens: ScreensEntity[]
+    Add: AddEntity[];
+
+    @OneToMany(() => UpdateEntity, update => update.Role)
+    @JoinTable()
+    Updade: UpdateEntity[];
+
+    @OneToMany(() => DeleteEntity, del => del.Role)
+    @JoinTable()
+    Delete: DeleteEntity[];
+
+    @OneToOne(() => ProfilesEntity, (profile) => profile.Role)
+    Profile: ProfilesEntity;
 
     @CreateDateColumn({ name: 'created_at', type: 'datetime' })
     createdAt: Date;

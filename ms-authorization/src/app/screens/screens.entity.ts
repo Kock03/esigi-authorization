@@ -1,6 +1,10 @@
 import { BeforeInsert, Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { AcessEntity } from "../acess/acess.entity";
+import { AddEntity } from "../add/add.entity";
+import { DeleteEntity } from "../delete/delete.entity";
 import { ModuleEntity } from "../module/module.entity";
 import { RoleEntity } from "../roles/role.entity";
+import { UpdateEntity } from "../update/update.entity";
 
 @Entity()
 export class ScreensEntity {
@@ -17,11 +21,20 @@ export class ScreensEntity {
     @Column()
     inactive: boolean;
 
-    @ManyToOne(() => ModuleEntity, module => module.Screens)
+    @ManyToOne(() => ModuleEntity, module => module.Screens, { eager: true })
     Module: ModuleEntity;
 
-    @ManyToMany(() => RoleEntity, (roles) => roles.Screens)
-    Roles: RoleEntity[];
+    @ManyToOne(() => AcessEntity, acess => acess.Screens)
+    Acess: AcessEntity;
+
+    @ManyToOne(() => AddEntity, add => add.Screens)
+    Add: AddEntity;
+
+    @ManyToOne(() => UpdateEntity, update => update.Screens)
+    Update: UpdateEntity;
+
+    @ManyToOne(() => DeleteEntity, del => del.Screens)
+    Delete: DeleteEntity;
 
     @CreateDateColumn({ type: 'datetime' })
     createdAt: Date;
