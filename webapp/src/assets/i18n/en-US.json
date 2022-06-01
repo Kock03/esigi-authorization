@@ -1,0 +1,54 @@
+{
+
+    "user": "User",
+    "password": "Password",
+    "error_small_password": "Password too small",
+    "error_long_password": "Password too big",
+    "error_user_required": "User field is required",
+    "error_password_required": "Password field is required",
+    "connect": "Connect",
+    "menuName": "Customers Positions",
+    "back_btn": "Back",
+    "cancel_btn": "Cancel",
+    "delete_btn": "Delete",
+    "name": "Name",
+  
+    "index": {
+      "index_title": "Configurations"
+    },
+   
+    "app_component": {
+      "function": "Function",
+      "logout_span": "Logout"
+    },
+  
+    "active_directory": {
+      "ad_connection": "Active Directory Connection",
+      "ad_address": "AD Address",
+      "error_ad_address_required": "AD address field is required"
+    },
+  
+    "email_config": {
+      "server_config": "Server Configuration",
+      "server_type": "Server Type",
+      "entry_server": "Inbound Server",
+      "server": "Server",
+      "port": "Port",
+      "ssl_tls_text": "This server requires a connection cryptography(SSL/TLS)",
+      "cryptography_method": "Cryptography Method",
+      "spa_text": "This login using security password authentication(SPA)",
+      "exit_server": "Outgoing Server",
+      "none": "None",
+      "automatic": "Automatic"
+    },
+  
+    "register_initial": {
+      "client_register": "Client Register",
+      "collaborator_register": "Collaborator Register",
+      "project_register": "Project Register",
+      "financial_register": "Financial Register",
+      "generic_register": "Generic Register"
+    }
+  
+  }
+  

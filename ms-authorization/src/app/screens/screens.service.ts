@@ -15,6 +15,7 @@ export class ScreensService {
     async findAll() {
         const options: FindManyOptions = {
             order: { createdAt: 'DESC' },
+            relations: ['Module'] 
         };
         return await this.screensService.find(options);
     }
