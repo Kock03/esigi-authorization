@@ -24,7 +24,7 @@
         <mat-checkbox class="checkbox" color="primary" fxFlex="15" formControlName="inactive"
           fxLayoutAlign="center start">Inativo</mat-checkbox>
         <div class="button" fxFlex="15" fxLayoutAlign="center">
-          <button mat-flat-button color="primary" (click)="saveModule()">
+          <button [disabled]="moduleForm.invalid" mat-flat-button color="primary" (click)="saveModule()">
             <mat-icon>save</mat-icon>
           </button>
         </div>

@@ -57,7 +57,7 @@
           >Inativo</mat-checkbox
         >
         <div fxLayoutAlign="center" class="button" fxFlex="10">
-          <button [disabled]="moduleValid === false" (click)="saveScreen()" mat-flat-button color="primary">
+          <button [disabled]="moduleValid === false || screenForm.invalid" (click)="saveScreen()" mat-flat-button color="primary">
             <mat-icon>save</mat-icon>
           </button>
         </div>
