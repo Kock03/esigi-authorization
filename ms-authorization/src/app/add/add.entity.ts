@@ -1,29 +1,42 @@
-import { BeforeInsert, Column, CreateDateColumn, DeleteDateColumn, Entity, Generated, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { RoleEntity } from "../roles/role.entity";
-import { ScreensEntity } from "../screens/screens.entity";
+import {
+  BeforeInsert,
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  Generated,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { RoleEntity } from '../roles/role.entity';
+import { ScreensEntity } from '../screens/screens.entity';
 
 @Entity()
 export class AddEntity {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+  @Column()
+  use: Boolean;
 
-    @Column()
-    Use: Boolean;
+  @OneToMany(() => ScreensEntity, (screens) => screens.Add, {
+    cascade: ['insert', 'update', 'remove'],
+    orphanedRowAction: 'delete',
+  })
+  Screens: ScreensEntity[];
 
-    @OneToMany(() => ScreensEntity, screens => screens.Add)
-    Screens: ScreensEntity[];
+  @ManyToOne(() => RoleEntity, (role) => role.Acess)
+  Role: RoleEntity;
 
-    @ManyToOne(() => RoleEntity, (role) => role.Acess)
-    Role: RoleEntity;
+  @CreateDateColumn({ type: 'datetime' })
+  createdAt: Date;
 
-    @CreateDateColumn({ type: 'datetime' })
-    createdAt: Date;
+  @UpdateDateColumn({ name: 'updated_at', type: 'datetime' })
+  updatedAt: Date;
 
-    @UpdateDateColumn({ name: 'updated_at', type: 'datetime' })
-    updatedAt: Date;
-
-    @DeleteDateColumn({ type: 'datetime' })
-    deletedAt: Date;
-
+  @DeleteDateColumn({ type: 'datetime' })
+  deletedAt: Date;
 }

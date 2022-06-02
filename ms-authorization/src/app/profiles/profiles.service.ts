@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindConditions, FindOneOptions, Repository } from 'typeorm';
+import { FindConditions, FindManyOptions, FindOneOptions, Repository } from 'typeorm';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { ProfilesEntity } from './profiles.entity';
@@ -13,13 +13,11 @@ export class ProfilesService {
   ) {}
 
   async findAll() {
-    const profilesWithUsers = await this.profilesRepository
-      .createQueryBuilder('profiles')
-      .leftJoinAndSelect('profiles.user', 'user')
-      .getMany();
-
-    return profilesWithUsers;
-  }
+    const options: FindManyOptions = {
+        order: { createdAt: 'DESC' },
+    };
+    return await this.profilesRepository.find(options);
+}
 
   async findOneOrFail(
     conditions: FindConditions<ProfilesEntity>,
@@ -35,6 +33,7 @@ export class ProfilesService {
   async store(data: CreateProfileDto) {
     const profile = this.profilesRepository.create(data);
     return await this.profilesRepository.save(profile);
+
   }
 
   async update(id: string, data: UpdateProfileDto) {

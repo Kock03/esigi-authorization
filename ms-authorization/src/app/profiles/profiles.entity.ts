@@ -23,7 +23,10 @@ export class ProfilesEntity {
   @Column({ nullable: true })
   UserId: string;
 
-  @OneToOne(() => RoleEntity, (role) => role.Profile)
+  @OneToOne(() => RoleEntity, {
+    cascade: ['insert', 'update', 'remove'],
+    orphanedRowAction: 'delete',
+  })
   @JoinColumn()
   Role: RoleEntity;
 
@@ -35,5 +38,4 @@ export class ProfilesEntity {
 
   @DeleteDateColumn({ name: 'deleted_at', type: 'datetime' })
   deletedAt: Date;
-
 }

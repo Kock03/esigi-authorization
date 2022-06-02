@@ -13,16 +13,6 @@ export class RoleService {
         private readonly rolesRepository: Repository<RoleEntity>,
     ) { }
 
-    // async findAll() {
-    //     const rolesWithProfiles = await this.rolesRepository
-    //         .createQueryBuilder('roles')
-    //         .leftJoinAndSelect('roles.profiles', 'profiles')
-    //         .getMany();
-
-    //     return rolesWithProfiles;
-    // }
-
-
     async findAll() {
         const options: FindManyOptions = {
             order: { createdAt: 'DESC' },
@@ -34,7 +24,7 @@ export class RoleService {
         conditions: FindConditions<RoleEntity>,
         options?: FindOneOptions<RoleEntity>,
     ) {
-        options = { relations: ['Modules', 'Screens'] };
+        options = { relations: ['Acess', 'Add', 'Updade', 'Delete'] };
         try {
             return await this.rolesRepository.findOneOrFail(conditions, options);
         } catch (error) {

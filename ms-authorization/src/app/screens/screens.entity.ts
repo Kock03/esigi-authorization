@@ -21,7 +21,7 @@ export class ScreensEntity {
     @Column()
     inactive: boolean;
 
-    @ManyToOne(() => ModuleEntity, module => module.Screens, { eager: true })
+    @ManyToOne(() => ModuleEntity, module => module.Screens)
     Module: ModuleEntity;
 
     @ManyToOne(() => AcessEntity, acess => acess.Screens)

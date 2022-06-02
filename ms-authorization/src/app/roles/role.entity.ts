@@ -1,5 +1,17 @@
-
-import { BeforeInsert, Column, CreateDateColumn, DeleteDateColumn, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  BeforeInsert,
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { AcessEntity } from '../acess/acess.entity';
 import { AddEntity } from '../add/add.entity';
 import { DeleteEntity } from '../delete/delete.entity';
@@ -10,44 +22,57 @@ import { UpdateEntity } from '../update/update.entity';
 
 @Entity()
 export class RoleEntity {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+  @Column()
+  name: string;
 
-    @Column()
-    identifier: number;
+  @Column()
+  identifier: number;
 
-    @OneToMany(() => AcessEntity, Acess => Acess.Role)
-    @JoinTable()
-    Acess: AcessEntity[];
+  @OneToMany(() => AcessEntity, (Acess) => Acess.Role, {
+    cascade: ['insert', 'update', 'remove'],
+    orphanedRowAction: 'delete',
+  })
+  @JoinTable()
+  Acess: AcessEntity[];
 
-    @OneToMany(() => AddEntity, add => add.Role)
-    @JoinTable()
-    Add: AddEntity[];
+  @OneToMany(() => AddEntity, (add) => add.Role, {
+    cascade: ['insert', 'update', 'remove'],
+    orphanedRowAction: 'delete',
+  })
+  @JoinTable()
+  Add: AddEntity[];
 
-    @OneToMany(() => UpdateEntity, update => update.Role)
-    @JoinTable()
-    Updade: UpdateEntity[];
+  @OneToMany(() => UpdateEntity, (update) => update.Role, {
+    cascade: ['insert', 'update', 'remove'],
+    orphanedRowAction: 'delete',
+  })
+  @JoinTable()
+  Updade: UpdateEntity[];
 
-    @OneToMany(() => DeleteEntity, del => del.Role)
-    @JoinTable()
-    Delete: DeleteEntity[];
+  @OneToMany(() => DeleteEntity, (del) => del.Role, {
+    cascade: ['insert', 'update', 'remove'],
+    orphanedRowAction: 'delete',
+  })
+  @JoinTable()
+  Delete: DeleteEntity[];
 
-    @OneToOne(() => ProfilesEntity, (profile) => profile.Role)
-    Profile: ProfilesEntity;
+  @OneToOne(() => ProfilesEntity, (profile) => profile.Role)
+  Profile: ProfilesEntity;
 
-    @CreateDateColumn({ name: 'created_at', type: 'datetime' })
-    createdAt: Date;
+  @CreateDateColumn({ name: 'created_at', type: 'datetime' })
+  createdAt: Date;
 
-    @UpdateDateColumn({ name: 'updated_at', type: 'datetime' })
-    updatedAt: Date;
+  @UpdateDateColumn({ name: 'updated_at', type: 'datetime' })
+  updatedAt: Date;
 
-    @DeleteDateColumn({ name: 'deleted_at', type: 'datetime' })
-    deletedAt: Date;
+  @DeleteDateColumn({ name: 'deleted_at', type: 'datetime' })
+  deletedAt: Date;
 
-    @BeforeInsert()
-    InsertIdentifier() {
-        this.identifier = Math.floor(Math.random() * 65536);
-    }
-
+  @BeforeInsert()
+  InsertIdentifier() {
+    this.identifier = Math.floor(Math.random() * 65536);
+  }
 }

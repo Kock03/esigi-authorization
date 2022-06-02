@@ -6,6 +6,7 @@ import { AcessModule } from './app/acess/acess.module';
 import { AddModule } from './app/add/add.module';
 import { DeleteModule } from './app/delete/delete.module';
 import { ModuleModule } from './app/module/module.module';
+import { ProfilesModule } from './app/profiles/profiles.module';
 import { RoleModule } from './app/roles/roles.module';
 import { ScreensModule } from './app/screens/screens.module';
 import { UpdateModule } from './app/update/update.module';
@@ -22,7 +23,7 @@ import { UpdateModule } from './app/update/update.module';
     synchronize: true,
     namingStrategy: new SnakeNamingStrategy(),
   } as TypeOrmModuleOptions
-  ), ModuleModule, ScreensModule, RoleModule, AcessModule, AddModule, DeleteModule, UpdateModule],
+  ), ModuleModule, ScreensModule, RoleModule, AcessModule, AddModule, DeleteModule, UpdateModule, ProfilesModule],
   controllers: [],
   providers: [],
 })

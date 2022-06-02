@@ -1,9 +1,9 @@
 import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Post, Put } from '@nestjs/common';
-import { CreateScreensDto } from './dto/create-module.dto';
-import { UpdateScreensDto } from './dto/update-module.dto';
+import { CreateScreensDto } from './dto/create-screen.dto';
+import { UpdateScreensDto } from './dto/update-screen.dto';
 import { ScreensService } from './screens.service';
 
-@Controller('/api/v1/screens')
+@Controller('api/v1/screens')
 export class ScreensController {
     constructor(private readonly screensService: ScreensService) { }
 

@@ -14,7 +14,7 @@ export class ModuleProvider {
   findAll(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .get(environment.AUTHORIZATION_MS + 'module')
+        .get(environment.AUTHORIZATION_MS + 'modules')
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
@@ -24,7 +24,7 @@ export class ModuleProvider {
   findOne(id: string | null): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .get(environment.AUTHORIZATION_MS + 'module/:id', { id: id })
+        .get(environment.AUTHORIZATION_MS + 'modules/:id', { id: id })
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
@@ -33,7 +33,7 @@ export class ModuleProvider {
 
   findByName(query: any): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.apiGateway.get(environment.AUTHORIZATION_MS + `module/find/name?${query}`)
+      this.apiGateway.get(environment.AUTHORIZATION_MS + `modules/find/name?${query}`)
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
@@ -44,7 +44,7 @@ export class ModuleProvider {
   update(id: string | null, module: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .put(environment.AUTHORIZATION_MS + 'module/:id', { id: id }, module)
+        .put(environment.AUTHORIZATION_MS + 'modules/:id', { id: id }, module)
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
@@ -64,7 +64,7 @@ export class ModuleProvider {
   destroy(moduleId: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .delete(environment.AUTHORIZATION_MS + 'module/' + moduleId)
+        .delete(environment.AUTHORIZATION_MS + 'modules/' + moduleId)
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);

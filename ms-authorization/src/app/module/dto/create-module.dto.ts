@@ -14,4 +14,7 @@ export class CreateModuleDto {
     @IsNotEmpty()
     inactive: boolean;
 
+    @IsOptional()
+    Screens: ScreensEntity[];
+
 }

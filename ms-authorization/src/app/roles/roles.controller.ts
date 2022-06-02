@@ -8,11 +8,6 @@ import { AuthGuard } from '@nestjs/passport';
 export class RoleController {
     constructor(private readonly rolesService: RoleService) { }
 
-    // @Get()
-    // async index() {
-    //     return await this.rolesService.findAll();
-    // }
-
     @Get()
     async index() {
         return await this.rolesService.findAll();
