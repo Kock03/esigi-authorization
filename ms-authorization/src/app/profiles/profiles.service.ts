@@ -23,6 +23,7 @@ export class ProfilesService {
     conditions: FindConditions<ProfilesEntity>,
     options?: FindOneOptions<ProfilesEntity>,
   ) {
+    options = { relations: ['Role'] };
     try {
       return await this.profilesRepository.findOneOrFail(conditions, options);
     } catch (error) {
