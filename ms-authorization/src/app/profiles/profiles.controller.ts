@@ -9,6 +9,7 @@ import {
   ParseUUIDPipe,
   Post,
   Put,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
@@ -33,6 +34,16 @@ export class ProfilesController {
   @Get(':id')
   async show(@Param('id', new ParseUUIDPipe()) id: string) {
     return await this.profilesService.findOneOrFail({ id });
+  }
+
+  @Get('find/name')
+  async findByName(@Query() query: any) {
+    return this.profilesService.findByName(query);
+  }
+
+  @Get('/short/list/profiles')
+  async shortListProfiles() {
+    return await this.profilesService.shortListProfiles();
   }
 
   @Put(':id')

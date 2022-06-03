@@ -14,7 +14,7 @@ export class ScreenProvider {
   findAll(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .get(environment.AUTHORIZATION_MS + 'screens')
+        .get(environment.AUTHORIZATION_MS + 'profiles')
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
@@ -24,7 +24,7 @@ export class ScreenProvider {
   findOne(id: string | null): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .get(environment.AUTHORIZATION_MS + 'screens/:id', { id: id })
+        .get(environment.AUTHORIZATION_MS + 'profiles/:id', { id: id })
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
@@ -33,7 +33,7 @@ export class ScreenProvider {
 
   findByName(query: any): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.apiGateway.get(environment.AUTHORIZATION_MS + `screens/find/name?${query}`)
+      this.apiGateway.get(environment.AUTHORIZATION_MS + `profiles/find/name?${query}`)
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
@@ -44,7 +44,7 @@ export class ScreenProvider {
   update(id: string | null, screen: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .put(environment.AUTHORIZATION_MS + 'screens/:id', { id: id }, screen)
+        .put(environment.AUTHORIZATION_MS + 'profiles/:id', { id: id }, screen)
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
@@ -54,7 +54,7 @@ export class ScreenProvider {
   store(screen: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .post(environment.AUTHORIZATION_MS + 'screens', screen)
+        .post(environment.AUTHORIZATION_MS + 'profiles', screen)
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
@@ -64,7 +64,7 @@ export class ScreenProvider {
   destroy(screenId: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .delete(environment.AUTHORIZATION_MS + 'screens/' + screenId)
+        .delete(environment.AUTHORIZATION_MS + 'profiles/' + screenId)
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);

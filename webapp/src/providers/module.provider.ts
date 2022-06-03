@@ -54,7 +54,7 @@ export class ModuleProvider {
   store(module: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .post(environment.AUTHORIZATION_MS + 'module', module)
+        .post(environment.AUTHORIZATION_MS + 'modules', module)
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);

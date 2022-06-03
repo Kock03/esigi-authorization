@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindConditions, FindManyOptions, FindOneOptions, Repository } from 'typeorm';
+import { FindConditions, FindManyOptions, FindOneOptions, Like, Repository } from 'typeorm';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { ProfilesEntity } from './profiles.entity';
@@ -29,6 +29,20 @@ export class ProfilesService {
     } catch (error) {
       throw new NotFoundException(error.message);
     }
+  }
+
+  findByName(query): Promise<ProfilesEntity[]> {
+    return this.profilesRepository.find({
+      select:[ 'id','name'],
+      where: [
+        { name: Like(`${query.name}%`) },]
+    });
+  }
+
+  async shortListProfiles(){
+    return await this.profilesRepository.find({
+      select: ['id', 'name'],
+    });
   }
 
   async store(data: CreateProfileDto) {
