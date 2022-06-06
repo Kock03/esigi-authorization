@@ -1,0 +1,21 @@
+{
+  "cancel_btn": "Cancelar",
+  "save_btn": "Salvar",
+  "access_security": {
+    "register": "Cadastro de módulo",
+    "module_name": "Nome do Módulo",
+    "identifier": "Identificador",
+    "register_screen": "Cadastro de Tela",
+    "screen": "Tela",
+    "register_profile": "Cadastro de perfil"
+  },
+
+  "app_component": {
+    "edit": "Editar",
+    "logout_span": "Logout"
+  },
+
+  "validators": {
+    "required": "Campo obrigatório"
+  }
+}
