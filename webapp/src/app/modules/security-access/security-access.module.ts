@@ -18,6 +18,7 @@ import { MatTableModule } from '@angular/material/table';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import {MatTreeModule} from '@angular/material/tree';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     RouterModule,
     TranslateModule.forChild(),
     RouterModule,
+    MatTreeModule,
     ReactiveFormsModule,
     MatSelectModule,
     MatIconModule,
