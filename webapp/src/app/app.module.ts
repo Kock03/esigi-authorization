@@ -25,7 +25,7 @@ import { MatTableModule } from '@angular/material/table';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
-import { ConfirmDialogService } from 'src/services/confirn-dialog.service';
+import { ConfirmDialogService } from 'src/services/confirn-dialog.service'
 import { SecurityAccessModule } from './modules/security-access/security-access.module';
 import { MAT_SELECT_SCROLL_STRATEGY_PROVIDER } from '@angular/material/select';
 import { MAT_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@angular/material/tooltip';

@@ -16,7 +16,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { ModuleProvider } from 'src/providers/module.provider';
-import { ScreenProvider } from 'src/providers/screen.provider';
+import { ScreenProvider } from 'src/providers/screen.provicer';
+
 import { ErrorStateMatcherService } from 'src/services/error.state.matcher.service';
 import { SnackBarService } from 'src/services/snackbar.service';
 
@@ -63,6 +64,7 @@ export class ScreenRegisterComponent implements OnInit {
 
   async getScreenList() {
     const screen = await this.screenProvider.findAll();
+    console.log("🚀 ~ file: screen-register.component.ts ~ line 66 ~ ScreenRegisterComponent ~ getScreenList ~ screen", screen)
     this.dataTable = screen;
   }
 

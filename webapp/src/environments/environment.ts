@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
 
-  AUTHORIZATION_MS: 'localhost:3000/api/v1/',
+  AUTHORIZATION_MS: 'localhost:3507/api/v1/',
   message: 'LOCAL',
   protocol: 'http',
 };
