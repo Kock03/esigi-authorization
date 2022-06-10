@@ -51,7 +51,7 @@ export class ModuleRegisterComponent implements OnInit {
       this.getModuleList();
       this.snackbarService.showAlert('Módulo cadastrado com sucesso!');
     } catch (error: any) {
-      console.log('ERROR 132' + error);
+      console.error('ERROR 132' + error);
       this.snackbarService.showError('Falha ao cadastrar!');
     }
   }

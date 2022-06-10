@@ -42,12 +42,10 @@ export class RoleService {
             const role = await this.rolesRepository.findOneOrFail({
                 id,
             });
+            return await this.rolesRepository.save(role);
         } catch {
             throw new NotFoundException();
         }
-
-        return await this.rolesRepository.save({ id: id, ...data });
-
     }
 
     async destroy(id: string) {

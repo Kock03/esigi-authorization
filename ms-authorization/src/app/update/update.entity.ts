@@ -8,6 +8,7 @@ import {
   ManyToMany,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -19,16 +20,13 @@ export class UpdateEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
-  use: Boolean;
-
   @OneToMany(() => ScreensEntity, (screens) => screens.Update, {
     cascade: ['insert', 'update', 'remove'],
     orphanedRowAction: 'delete',
   })
   Screens: ScreensEntity[];
 
-  @ManyToOne(() => RoleEntity, (role) => role.Updade)
+  @OneToOne(() => RoleEntity, (role) => role.Updade)
   Role: RoleEntity;
 
   @CreateDateColumn({ type: 'datetime' })

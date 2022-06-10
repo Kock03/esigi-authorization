@@ -8,6 +8,7 @@ import {
   ManyToMany,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -19,16 +20,13 @@ export class DeleteEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
-  use: Boolean;
-
   @OneToMany(() => ScreensEntity, (screens) => screens.Delete, {
     cascade: ['insert', 'update', 'remove'],
     orphanedRowAction: 'delete',
   })
   Screens: ScreensEntity[];
 
-  @ManyToOne(() => RoleEntity, (role) => role.Delete)
+  @OneToOne(() => RoleEntity, (role) => role.Delete)
   Role: RoleEntity;
 
   @CreateDateColumn({ type: 'datetime' })

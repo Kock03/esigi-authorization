@@ -13,17 +13,14 @@ export class CreateRoleDto {
     identifier: number;
 
     @IsNotEmpty()
-    name: string;
+    Acess: AcessEntity;
 
     @IsNotEmpty()
-    Acess: AcessEntity[];
+    Add: AddEntity;
 
     @IsNotEmpty()
-    Add: AddEntity[];
+    Updade: UpdateEntity;
 
     @IsNotEmpty()
-    Updade: UpdateEntity[];
-
-    @IsNotEmpty()
-    Delete: DeleteEntity[];
+    Delete: DeleteEntity;
 }

@@ -8,6 +8,7 @@ import {
   ManyToMany,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -19,16 +20,13 @@ export class AcessEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
-  use: Boolean;
-
   @OneToMany(() => ScreensEntity, (screens) => screens.Acess, {
     cascade: ['insert', 'update', 'remove'],
     orphanedRowAction: 'delete',
   })
   Screens: ScreensEntity[];
 
-  @ManyToOne(() => RoleEntity, (role) => role.Acess)
+  @OneToOne(() => RoleEntity, (role) => role.Acess)
   Role: RoleEntity;
 
   @CreateDateColumn({ type: 'datetime' })
