@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { ModuleProvider } from 'src/providers/module.provider';
 import { ProfilesProvider } from 'src/providers/profile.provider';
 import { SnackBarService } from 'src/services/snackbar.service';
+import { ErrorStateMatcherService } from 'src/services/error.state.matcher.service';
 
 interface PermissionsClass {
   name: string;
@@ -22,7 +28,7 @@ export class ProfileRegisterComponent implements OnInit {
   screenUpdate: any[] = [];
   screenDelete: any[] = [];
 
-
+  matcher = new ErrorStateMatcherService();
   profileForm!: FormGroup;
   data: [] = [];
   method: string = '';
@@ -54,15 +60,25 @@ export class ProfileRegisterComponent implements OnInit {
 
   async getModule() {
     this.modules = await this.moduleProvider.findAll();
+
+    for (let i = 0; i < this.modules.length; i++) {
+      const module = this.modules.findIndex(
+        (module: any) => module.Screens.length <= 0
+      );
+
+      if (module > -1) {
+        this.modules.splice(module, 1);
+      }
+    }
     this.dataSource.data = this.modules;
   }
 
   initForm(): void {
     this.profileForm = this.fb.group({
       name: ['', Validators.required],
-      Role: this.fb.group( {
+      Role: this.fb.group({
         Acess: this.fb.group({ Screens: [] }),
-        Add: this.fb.group({  Screens: [] }),
+        Add: this.fb.group({ Screens: [] }),
         Update: this.fb.group({ Screens: [] }),
         Delete: this.fb.group({ Screens: [] }),
       }),
@@ -82,7 +98,6 @@ export class ProfileRegisterComponent implements OnInit {
       } else {
         this.screenAcess.push(screen);
       }
-   
     }
 
     if (name === 'add') {
@@ -119,23 +134,22 @@ export class ProfileRegisterComponent implements OnInit {
     }
 
     let object = {
-                 Acess: {Screens: this.screenAcess },
-                 Add: {Screens: this.screenAdd },
-                 Update: {Screens: this.screenUpdate },
-                 Delete: {Screens: this.screenDelete }
-                };
+      Acess: { Screens: this.screenAcess },
+      Add: { Screens: this.screenAdd },
+      Update: { Screens: this.screenUpdate },
+      Delete: { Screens: this.screenDelete },
+    };
 
     value.setValue(object);
-    console.log(this.profileForm.value)
   }
 
- async save(){ 
-     let data = this.profileForm.getRawValue()
+  async save() {
+    let data = this.profileForm.getRawValue();
     try {
-     const save = await this.profilesProvider.store(data);
-     this.initForm();
-     this.snackbarService.showAlert('Perfil cadastrado com sucesso!');
-    }catch(error: any){
+      const save = await this.profilesProvider.store(data);
+      this.initForm();
+      this.snackbarService.showAlert('Perfil cadastrado com sucesso!');
+    } catch (error: any) {
       console.error('ERROR 132' + error);
       this.snackbarService.showError('Falha ao cadastrar!');
     }

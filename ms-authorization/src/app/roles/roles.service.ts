@@ -24,7 +24,7 @@ export class RoleService {
         conditions: FindConditions<RoleEntity>,
         options?: FindOneOptions<RoleEntity>,
     ) {
-        options = { relations: ['Acess', 'Add', 'Updade', 'Delete'] };
+        options = { relations: ['Acess', 'Add', 'Update', 'Delete'] };
         try {
             return await this.rolesRepository.findOneOrFail(conditions, options);
         } catch (error) {

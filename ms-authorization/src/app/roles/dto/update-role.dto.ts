@@ -22,7 +22,7 @@ export class UpdateRoleDto {
     Add: AddEntity[];
 
     @IsOptional()
-    Updade: UpdateEntity[];
+    Update: UpdateEntity[];
     
     @IsOptional()
     Delete: DeleteEntity[];

@@ -19,7 +19,7 @@ export class CreateRoleDto {
     Add: AddEntity;
 
     @IsNotEmpty()
-    Updade: UpdateEntity;
+    Update: UpdateEntity;
 
     @IsNotEmpty()
     Delete: DeleteEntity;

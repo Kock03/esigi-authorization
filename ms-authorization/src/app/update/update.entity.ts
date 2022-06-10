@@ -26,7 +26,7 @@ export class UpdateEntity {
   })
   Screens: ScreensEntity[];
 
-  @OneToOne(() => RoleEntity, (role) => role.Updade)
+  @OneToOne(() => RoleEntity, (role) => role.Update)
   Role: RoleEntity;
 
   @CreateDateColumn({ type: 'datetime' })

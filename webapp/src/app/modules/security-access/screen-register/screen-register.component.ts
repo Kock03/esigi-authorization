@@ -64,7 +64,6 @@ export class ScreenRegisterComponent implements OnInit {
 
   async getScreenList() {
     const screen = await this.screenProvider.findAll();
-    console.log("🚀 ~ file: screen-register.component.ts ~ line 66 ~ ScreenRegisterComponent ~ getScreenList ~ screen", screen)
     this.dataTable = screen;
   }
 
