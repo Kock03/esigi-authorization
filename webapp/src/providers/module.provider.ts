@@ -40,6 +40,15 @@ export class ModuleProvider {
     });
   }
 
+  findActive(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.apiGateway
+        .get('modules/list/active')
+        .subscribe((response: HttpResponse<any>) => {
+          resolve(response.body);
+        }, reject);
+    });
+  }
 
   update(id: string | null, module: any): Promise<any> {
     return new Promise((resolve, reject) => {
