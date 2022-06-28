@@ -7,13 +7,8 @@
   <div fxLayout="column" class="content-scroll" *ngIf="screenForm">
     <form [formGroup]="screenForm" fxLayout="column">
       <div fxFlex="100" fxLayoutAlign="space-between" fxLayoutGap="25px">
-        <mat-form-field fxFlex="10" appearance="outline">
-          <mat-label>{{ "access_security.identifier" | translate }}</mat-label>
-          <input matInput disabled />
-        </mat-form-field>
-
         <mat-form-field
-          fxFlex="40"
+          fxFlex="45"
           class="example-full-width"
           appearance="outline"
         >
@@ -37,7 +32,7 @@
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
-        <mat-form-field fxFlex="35" appearance="outline">
+        <mat-form-field fxFlex="40" appearance="outline">
           <mat-label>Nome da Tela</mat-label>
           <input matInput placeholder="Nome da tela" formControlName="name" [errorStateMatcher]="matcher"/>
           <mat-error

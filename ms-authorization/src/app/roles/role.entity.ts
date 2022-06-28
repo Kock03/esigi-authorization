@@ -4,6 +4,7 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
   JoinTable,
   ManyToMany,
   ManyToOne,
@@ -26,38 +27,35 @@ export class RoleEntity {
   id: string;
 
   @Column()
-  name: string;
-
-  @Column()
   identifier: number;
 
-  @OneToMany(() => AcessEntity, (Acess) => Acess.Role, {
+  @OneToOne(() => AcessEntity, {
     cascade: ['insert', 'update', 'remove'],
     orphanedRowAction: 'delete',
   })
-  @JoinTable()
-  Acess: AcessEntity[];
+  @JoinColumn()
+  Acess: AcessEntity;
 
-  @OneToMany(() => AddEntity, (add) => add.Role, {
+  @OneToOne(() => AddEntity,{
     cascade: ['insert', 'update', 'remove'],
     orphanedRowAction: 'delete',
   })
-  @JoinTable()
-  Add: AddEntity[];
+  @JoinColumn()
+  Add: AddEntity;
 
-  @OneToMany(() => UpdateEntity, (update) => update.Role, {
+  @OneToOne(() => UpdateEntity, {
     cascade: ['insert', 'update', 'remove'],
     orphanedRowAction: 'delete',
   })
-  @JoinTable()
-  Updade: UpdateEntity[];
+  @JoinColumn()
+  Update: UpdateEntity;
 
-  @OneToMany(() => DeleteEntity, (del) => del.Role, {
+  @OneToOne(() => DeleteEntity, {
     cascade: ['insert', 'update', 'remove'],
     orphanedRowAction: 'delete',
   })
-  @JoinTable()
-  Delete: DeleteEntity[];
+  @JoinColumn()
+  Delete: DeleteEntity;
 
   @OneToOne(() => ProfilesEntity, (profile) => profile.Role)
   Profile: ProfilesEntity;

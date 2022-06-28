@@ -15,7 +15,7 @@ import { ModuleService } from './module.service';
 
 @Controller('api/v1/modules')
 export class ModuleController {
-  constructor(private readonly moduleService: ModuleService) {}
+  constructor(private readonly moduleService: ModuleService) { }
 
   @Get()
   async index() {
@@ -31,6 +31,12 @@ export class ModuleController {
   async findByName(@Query() query: any) {
     return this.moduleService.findByName(query);
   }
+
+  @Get('list/active')
+  async findActive() {
+    return await this.moduleService.findActive();
+  }
+
 
   @Post()
   async store(@Body() body: CreateModuleDto) {

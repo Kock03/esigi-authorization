@@ -24,7 +24,7 @@ export class RoleService {
         conditions: FindConditions<RoleEntity>,
         options?: FindOneOptions<RoleEntity>,
     ) {
-        options = { relations: ['Acess', 'Add', 'Updade', 'Delete'] };
+        options = { relations: ['Acess', 'Add', 'Update', 'Delete'] };
         try {
             return await this.rolesRepository.findOneOrFail(conditions, options);
         } catch (error) {
@@ -42,12 +42,10 @@ export class RoleService {
             const role = await this.rolesRepository.findOneOrFail({
                 id,
             });
+            return await this.rolesRepository.save(role);
         } catch {
             throw new NotFoundException();
         }
-
-        return await this.rolesRepository.save({ id: id, ...data });
-
     }
 
     async destroy(id: string) {

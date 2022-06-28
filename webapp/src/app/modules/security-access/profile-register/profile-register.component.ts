@@ -1,8 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { ModuleProvider } from 'src/providers/module.provider';
+import { ProfilesProvider } from 'src/providers/profile.provider';
+import { SnackBarService } from 'src/services/snackbar.service';
+import { ErrorStateMatcherService } from 'src/services/error.state.matcher.service';
 
 interface PermissionsClass {
   name: string;
@@ -15,8 +23,13 @@ interface PermissionsClass {
   styleUrls: ['./profile-register.component.scss'],
 })
 export class ProfileRegisterComponent implements OnInit {
-  profileForm!: FormGroup;
+  screenAcess: any[] = [];
+  screenAdd: any[] = [];
+  screenUpdate: any[] = [];
+  screenDelete: any[] = [];
 
+  matcher = new ErrorStateMatcherService();
+  profileForm!: FormGroup;
   data: [] = [];
   method: string = '';
   profileId!: string;
@@ -29,8 +42,10 @@ export class ProfileRegisterComponent implements OnInit {
   dataSource = new MatTreeNestedDataSource<PermissionsClass>();
 
   constructor(
+    private profilesProvider: ProfilesProvider,
     private moduleProvider: ModuleProvider,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private snackbarService: SnackBarService
   ) {}
 
   hasChild = (_: number, node: PermissionsClass) =>
@@ -45,29 +60,98 @@ export class ProfileRegisterComponent implements OnInit {
 
   async getModule() {
     this.modules = await this.moduleProvider.findAll();
+
+    for (let i = 0; i < this.modules.length; i++) {
+      const module = this.modules.findIndex(
+        (module: any) => module.Screens.length <= 0
+      );
+
+      if (module > -1) {
+        this.modules.splice(module, 1);
+      }
+    }
     this.dataSource.data = this.modules;
   }
 
   initForm(): void {
     this.profileForm = this.fb.group({
       name: ['', Validators.required],
-      Role: {
-        name: '',
-        Acess: this.fb.array([{ use: false, Screens: [{ id: '' }] }]),
-        Add: this.fb.array([{ use: false, Screens: [{ id: '' }] }]),
-        Updade: this.fb.array([{ use: false, Screens: [{ id: '' }] }]),
-        Delete: this.fb.array([{ use: false, Screens: [{ id: '' }] }]),
-      },
+      Role: this.fb.group({
+        Acess: this.fb.group({ Screens: [] }),
+        Add: this.fb.group({ Screens: [] }),
+        Update: this.fb.group({ Screens: [] }),
+        Delete: this.fb.group({ Screens: [] }),
+      }),
     });
+  }
 
-    if (this.data) {
-      this.profileForm.patchValue(this.data);
+  function(event: any, name: string, screenId: string): any {
+    let value = this.profileForm.controls['Role'];
+    let screen = { id: screenId };
+
+    if (name === 'acess') {
+      const id = this.screenAcess.findIndex(
+        (register: any) => register.id === screenId
+      );
+      if (id > -1) {
+        this.screenAcess.splice(id, 1);
+      } else {
+        this.screenAcess.push(screen);
+      }
+    }
+
+    if (name === 'add') {
+      const id = this.screenAdd.findIndex(
+        (register: any) => register.id === screenId
+      );
+      if (id > -1) {
+        this.screenAdd.splice(id, 1);
+      } else {
+        this.screenAdd.push(screen);
+      }
+    }
+
+    if (name === 'update') {
+      const id = this.screenUpdate.findIndex(
+        (register: any) => register.id === screenId
+      );
+      if (id > -1) {
+        this.screenUpdate.splice(id, 1);
+      } else {
+        this.screenUpdate.push(screen);
+      }
+    }
+
+    if (name === 'delete') {
+      const id = this.screenDelete.findIndex(
+        (register: any) => register.id === screenId
+      );
+      if (id > -1) {
+        this.screenDelete.splice(id, 1);
+      } else {
+        this.screenDelete.push(screen);
+      }
+    }
+
+    let object = {
+      Acess: { Screens: this.screenAcess },
+      Add: { Screens: this.screenAdd },
+      Update: { Screens: this.screenUpdate },
+      Delete: { Screens: this.screenDelete },
+    };
+
+    value.setValue(object);
+  }
+
+  async save() {
+    let data = this.profileForm.getRawValue();
+    try {
+      const save = await this.profilesProvider.store(data);
+      this.initForm();
+      this.snackbarService.showAlert('Perfil cadastrado com sucesso!');
+    } catch (error: any) {
+      console.error('ERROR 132' + error);
+      this.snackbarService.showError('Falha ao cadastrar!');
     }
   }
-
-  save() {
-    let data = this.profileForm.getRawValue();
-    console.log(data);
-  }
 }
--74;

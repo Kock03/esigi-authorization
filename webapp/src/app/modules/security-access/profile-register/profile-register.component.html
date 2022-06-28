@@ -5,26 +5,21 @@
   <div class="content-scroll" *ngIf="profileForm">
     <form [formGroup]="profileForm" fxLayout="column">
       <div fxFlex="100" fxLayoutGap="16px">
-        <mat-form-field fxFlex="20" appearance="outline">
-          <mat-label>Identificador</mat-label>
-          <input
-            matInput
-           disabled
-          />
-        </mat-form-field>
-        <mat-form-field fxFlex="70" appearance="outline">
+
+        <mat-form-field fxFlex="90" appearance="outline">
           <mat-label>Nome do Perfil</mat-label>
           <input
+          [errorStateMatcher]="matcher"
             matInput
             placeholder="Nome do Perfil"
             formControlName="name"
           />
         </mat-form-field>
         <div fxFlex="10" fxLayout="row">
-          <button class="button-form-config" mat-button color="primary">
+          <button (click)="initForm()" class="button-form-config" mat-button color="primary">
             <mat-icon>close</mat-icon>
           </button>
-          <button (click)="save()" class="button-form-config" color="primary" mat-flat-button>
+          <button (click)="save()" class="button-form-config" color="primary" mat-flat-button [disabled]="profileForm.invalid">
             <mat-icon>save</mat-icon>
           </button>
         </div>
@@ -39,7 +34,7 @@
           class="example-tree"
         >
           <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-            <div class="mat-tree-node">
+            <div class="mat-tree-node" *ngIf="node.Screens.length > 0">
               <button
                 mat-icon-button
                 matTreeNodeToggle
@@ -73,29 +68,32 @@
               <ng-container matTreeNodeOutlet></ng-container>
             </div>
           </mat-nested-tree-node>
-          <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
-            <div fxLayout="row" fxFlex="100" class="permissionGlobal">
+          <mat-tree-node *matTreeNodeDef="let node" >
+            <div class="mat-tree-node"  fxLayout="row" fxFlex="100" class="permissionGlobal" >
               <div fxLayout="row" fxFlex="50" fxLayoutAlign="start center">
                 {{ node.name }}
               </div>
               <div fxFlex="50" class="box-check" fxLayoutAlign="space-between center">
-                <div FormArray="Acess">
+                <div>
                   <mat-checkbox
-                  formControlName="use"
+                  (change)="function($event, 'acess', node.id)"  
                   class="example-margin"
                 ></mat-checkbox>
                 </div>
 
 
                 <mat-checkbox
+                (change)="function($event, 'add', node.id)"  
                   class="example-margin"
                 ></mat-checkbox>
 
                 <mat-checkbox
+                (change)="function($event, 'update', node.id)"  
                   class="example-margin"
                 ></mat-checkbox>
 
                 <mat-checkbox
+                (change)="function($event, 'delete', node.id)"  
                   class="example-margin"
                 ></mat-checkbox>
               </div>

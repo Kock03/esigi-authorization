@@ -53,7 +53,7 @@ export class ScreenRegisterComponent implements OnInit {
     private moduleProvider: ModuleProvider,
     private screenProvider: ScreenProvider,
     private snackbarService: SnackBarService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -64,13 +64,12 @@ export class ScreenRegisterComponent implements OnInit {
 
   async getScreenList() {
     const screen = await this.screenProvider.findAll();
-    console.log("🚀 ~ file: screen-register.component.ts ~ line 66 ~ ScreenRegisterComponent ~ getScreenList ~ screen", screen)
     this.dataTable = screen;
   }
 
   async getModuleList() {
     this.filteredModuleList = this.modules =
-      await this.moduleProvider.findAll();
+      await this.moduleProvider.findActive();
   }
 
   private initFilter() {

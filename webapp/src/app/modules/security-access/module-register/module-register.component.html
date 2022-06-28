@@ -6,12 +6,8 @@
   <div class="content-scroll" *ngIf="moduleForm">
     <form [formGroup]="moduleForm" fxLayout="column">
       <div fxFlex="100" fxLayoutAlign="start" fxLayoutGap="16">
-        <mat-form-field fxFlex="20" appearance="outline">
-          <mat-label>{{ "access_security.identifier" | translate }}</mat-label>
-          <input matInput disabled />
-        </mat-form-field>
 
-        <mat-form-field fxFlex="50" appearance="outline">
+        <mat-form-field fxFlex="70" appearance="outline">
           <mat-label>{{ "access_security.module_name" | translate }}</mat-label>
           <input matInput placeholder="Nome do Módulo" formControlName="name" [errorStateMatcher]="matcher"/>
           <mat-error *ngIf="

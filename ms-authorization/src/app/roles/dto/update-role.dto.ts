@@ -10,9 +10,6 @@ import { UpdateEntity } from "src/app/update/update.entity";
 export class UpdateRoleDto {
 
     @IsOptional()
-    name: string;
-
-    @IsOptional()
     Modules: ModuleEntity[];
 
     @IsOptional()
@@ -25,7 +22,7 @@ export class UpdateRoleDto {
     Add: AddEntity[];
 
     @IsOptional()
-    Updade: UpdateEntity[];
+    Update: UpdateEntity[];
     
     @IsOptional()
     Delete: DeleteEntity[];

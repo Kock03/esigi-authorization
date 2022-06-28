@@ -16,7 +16,7 @@ export class ModuleService {
   constructor(
     @InjectRepository(ModuleEntity)
     private moduleService: Repository<ModuleEntity>,
-  ) {}
+  ) { }
 
   async findAll() {
     const options: FindManyOptions = {
@@ -29,7 +29,7 @@ export class ModuleService {
   findByName(query): Promise<ModuleEntity[]> {
     return this.moduleService.find({
       select: ['id', 'name'],
-      where: [{ name: Like(`${query.name}%`) }],
+      where: [{ name: Like(`${query.name}%`), inactive: false }],
     });
   }
 
@@ -43,6 +43,13 @@ export class ModuleService {
     } catch {
       throw new NotFoundException();
     }
+  }
+
+  async findActive() {
+    return await this.moduleService
+      .createQueryBuilder('modules')
+      .where('modules.inactive =false')
+      .getMany();
   }
 
   async store(data: CreateModuleDto) {
