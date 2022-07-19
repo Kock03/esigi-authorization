@@ -43,7 +43,7 @@ export class ModuleProvider {
   findActive(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .get('modules/list/active')
+        .get(environment.AUTHORIZATION_MS + 'modules/list/active')
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);

@@ -15,15 +15,22 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
+import { IProfiles } from './interfaces/i-profiles.interfaces';
 import { ProfilesService } from './profiles.service';
 
 @Controller('api/v1/profiles')
 export class ProfilesController {
-  constructor(private readonly profilesService: ProfilesService) {}
+  constructor(private readonly profilesService: ProfilesService) { }
 
   @Get()
   async index() {
     return await this.profilesService.findAll();
+  }
+
+
+  @Post('/list')
+  async findProfilessListById(@Body() body: IProfiles) {
+    return await this.profilesService.findProfilesListById(body.idList);
   }
 
   @Post()

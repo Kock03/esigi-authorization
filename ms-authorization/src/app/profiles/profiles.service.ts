@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindConditions, FindManyOptions, FindOneOptions, Like, Repository } from 'typeorm';
+import { FindConditions, FindManyOptions, FindOneOptions, Like, Repository, In, } from 'typeorm';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { ProfilesEntity } from './profiles.entity';
@@ -10,14 +10,21 @@ export class ProfilesService {
   constructor(
     @InjectRepository(ProfilesEntity)
     private readonly profilesRepository: Repository<ProfilesEntity>,
-  ) {}
+  ) { }
 
   async findAll() {
     const options: FindManyOptions = {
-        order: { createdAt: 'DESC' },
+      order: { createdAt: 'DESC' },
     };
     return await this.profilesRepository.find(options);
-}
+  }
+
+  async findProfilesListById(idList: string[]) {
+    return await this.profilesRepository.find({
+      select: ['id', 'name'],
+      where: { id: In(idList) }
+    })
+  }
 
   async findOneOrFail(
     conditions: FindConditions<ProfilesEntity>,
@@ -33,13 +40,13 @@ export class ProfilesService {
 
   findByName(query): Promise<ProfilesEntity[]> {
     return this.profilesRepository.find({
-      select:[ 'id','name'],
+      select: ['id', 'name'],
       where: [
         { name: Like(`${query.name}%`) },]
     });
   }
 
-  async shortListProfiles(){
+  async shortListProfiles() {
     return await this.profilesRepository.find({
       select: ['id', 'name'],
     });
