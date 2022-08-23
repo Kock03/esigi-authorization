@@ -14,14 +14,12 @@ export class ScreensService {
   constructor(
     @InjectRepository(ScreensEntity)
     private screensService: Repository<ScreensEntity>,
-  ) {}
+  ) { }
 
   async findAll() {
-    const options: FindManyOptions = {
-      order: { createdAt: 'DESC' },
-      relations: ['Module'],
-    };
-    return await this.screensService.find(options);
+    return await this.screensService.createQueryBuilder('screens')
+      .leftJoinAndSelect('screens.Module', 'Module')
+      .getMany();
   }
 
   async findOneOrFail(
@@ -30,7 +28,7 @@ export class ScreensService {
   ) {
     try {
       return await this.screensService.findOneOrFail(conditions, options);
-    } catch (error){
+    } catch (error) {
       throw new NotFoundException(error.message);
     }
   }

@@ -19,17 +19,17 @@ export class AppComponent {
 
   menuList = [
     {
-      name: 'Segurança Módulos',
+      name: 'Módulos / Telas',
       icon: 'view_module',
       selected: false,
       action: 'modulos',
     },
-    {
-      name: 'Segurança Telas',
-      icon: 'preview',
-      selected: false,
-      action: 'telas',
-    },
+    // {
+    //   name: 'Segurança Telas',
+    //   icon: 'preview',
+    //   selected: false,
+    //   action: 'telas',
+    // },
     {
       name: 'Segurança Perfis',
       icon: 'person',

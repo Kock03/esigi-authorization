@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ModuleRegisterComponent } from './module-register/module-register.component';
+import { ModuleRegisterComponent } from './module-and-scren-register/module-register.component';
 import { ScreenRegisterComponent } from './screen-register/screen-register.component';
 import { ProfileRegisterComponent } from './profile-register/profile-register.component';
 import { RouterModule, Routes } from '@angular/router';
