@@ -8,42 +8,24 @@
       <div fxFlex="100" fxLayoutAlign="start" fxLayoutGap="16">
         <mat-form-field fxFlex="85" appearance="outline">
           <mat-label>{{ "access_security.module_name" | translate }}</mat-label>
-          <input
-            matInput
-            placeholder="Nome do Módulo"
-            formControlName="name"
-            [errorStateMatcher]="matcher"
-          />
-          <mat-error
-            *ngIf="
+          <input matInput placeholder="Nome do Módulo" formControlName="name" [errorStateMatcher]="matcher" />
+          <mat-error *ngIf="
               moduleForm && moduleForm.controls['name'].hasError('required')
-            "
-          >
+            ">
             {{ "validators.required" | translate }}
           </mat-error>
         </mat-form-field>
-        <mat-checkbox
-          class="checkbox"
-          color="primary"
-          fxFlex="6"
-          formControlName="inactive"
-          fxLayoutAlign="center start"
-          >Inativo</mat-checkbox
-        >
+        <mat-checkbox class="checkbox" color="primary" fxFlex="6" formControlName="inactive"
+          fxLayoutAlign="center start">Inativo</mat-checkbox>
         <div class="button" fxFlex="10" fxLayoutAlign="center">
-          <button
-            [disabled]="moduleForm.invalid"
-            mat-flat-button
-            color="primary"
-            (click)="saveModule()"
-          >
+          <button [disabled]="moduleForm.invalid" mat-flat-button color="primary" (click)="saveModule()">
             <mat-icon>save</mat-icon>
           </button>
         </div>
       </div>
     </form>
     <div class="envolti-table mat-elevation-z8" fxLayout="column">
-      <table #table mat-table [dataSource]="dataTable" #Table>
+      <table #table mat-table [dataSource]="dataTableModule" #Table>
         <ng-container matColumnDef="identifier">
           <th mat-header-cell *matHeaderCellDef>
             {{ "access_security.identifier" | translate }}
@@ -69,17 +51,14 @@
           </td>
         </ng-container>
 
-        <tr
-          mat-header-row
-          *matHeaderRowDef="displayedColumns; sticky: true"
-        ></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
     </div>
   </div>
 </div>
 
-<div id="screenDialog"  class="content-screen">
+<div id="screenDialog" class="content-screen">
   <div class="titleScren">
     <h2 fxLayoutAlign="start">
       {{ "access_security.register_screen" | translate }}
@@ -88,26 +67,11 @@
   <div fxLayout="column" class="content-scroll" *ngIf="screenForm">
     <form [formGroup]="screenForm" fxLayout="column">
       <div fxFlex="100" fxLayoutAlign="space-between" fxLayoutGap="25px">
-        <mat-form-field
-          fxFlex="45"
-          class="example-full-width"
-          appearance="outline"
-        >
+        <mat-form-field fxFlex="45" class="example-full-width" appearance="outline">
           <mat-label>Módulos</mat-label>
-          <input
-            type="text"
-            placeholder="Módulo"
-            aria-label="text"
-            #filter
-            matInput
-            [matAutocomplete]="auto"
-            [formControl]="moduleControl"
-          />
-          <mat-autocomplete
-            autoActiveFirstOption
-            #auto="matAutocomplete"
-            [displayWith]="displayFn"
-          >
+          <input type="text" placeholder="Módulo" aria-label="text" #filter matInput [matAutocomplete]="auto"
+            [formControl]="moduleControl" />
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
             <mat-option *ngFor="let module of filteredModules" [value]="module">
               {{ module.name }}
             </mat-option>
@@ -115,35 +79,18 @@
         </mat-form-field>
         <mat-form-field fxFlex="40" appearance="outline">
           <mat-label>Nome da Tela</mat-label>
-          <input
-            matInput
-            placeholder="Nome da tela"
-            formControlName="name"
-            [errorStateMatcher]="matcher"
-          />
-          <mat-error
-            *ngIf="
+          <input matInput placeholder="Nome da tela" formControlName="name" [errorStateMatcher]="matcher" />
+          <mat-error *ngIf="
               screenForm && screenForm.controls['name'].hasError('required')
-            "
-          >
+            ">
             {{ "validators.required" | translate }}
           </mat-error>
         </mat-form-field>
-        <mat-checkbox
-          class="checkbox"
-          color="primary"
-          fxFlex="6"
-          formControlName="inactive"
-          fxLayoutAlign="center start"
-          >Inativo</mat-checkbox
-        >
+        <mat-checkbox class="checkbox" color="primary" fxFlex="6" formControlName="inactive"
+          fxLayoutAlign="center start">Inativo</mat-checkbox>
         <div fxLayoutAlign="center" class="button" fxFlex="10">
-          <button
-            [disabled]="moduleValid === false || screenForm.invalid"
-            (click)="saveScreen()"
-            mat-flat-button
-            color="primary"
-          >
+          <button [disabled]="moduleValid === false || screenForm.invalid" (click)="saveScreen()" mat-flat-button
+            color="primary">
             <mat-icon>save</mat-icon>
           </button>
         </div>
@@ -151,13 +98,13 @@
     </form>
 
     <div class="envolti-table mat-elevation-z8" fxLayout="column">
-      <table #table mat-table [dataSource]="dataTable" #Table>
+      <table #table mat-table [dataSource]="dataTableScreen" #Table>
         <ng-container matColumnDef="moduleName">
           <th mat-header-cell *matHeaderCellDef>
             {{ "access_security.module_name" | translate }}
           </th>
           <td mat-cell *matCellDef="let Screen">
-            {{ Screen.Module.name }}
+            {{ Screen.Module? Screen.Module.name : 'Módulo não encontrado' }}
           </td>
         </ng-container>
 
@@ -170,10 +117,7 @@
           </td>
         </ng-container>
 
-        <tr
-          mat-header-row
-          *matHeaderRowDef="displayedColumnsScreen; sticky: true"
-        ></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsScreen; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumnsScreen"></tr>
       </table>
     </div>

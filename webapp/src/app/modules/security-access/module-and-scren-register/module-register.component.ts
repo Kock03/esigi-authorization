@@ -22,7 +22,8 @@ export class ModuleRegisterComponent implements OnInit {
 
 
   matcher = new ErrorStateMatcherService();
-  dataTable: [] = [];
+  dataTableModule: [] = [];
+  dataTableScreen: [] = [];
   Module: any;
   modules!: any[] | any[];
   filteredModules?: any[];
@@ -74,14 +75,14 @@ export class ModuleRegisterComponent implements OnInit {
 
   async getModuleList() {
     const moduleList = await this.moduleProvider.findAll();
-    this.dataTable = moduleList;
+    this.dataTableModule = moduleList;
   }
 
   async saveModule() {
     const data = this.moduleForm.getRawValue();
     try {
       await this.moduleProvider.store(data);
-      this.initForm();
+      this.moduleForm.reset();
       this.getModuleList();
       this.snackbarService.showAlert('Módulo cadastrado com sucesso!');
       duration: this.durationInSeconds * 1;
@@ -93,7 +94,7 @@ export class ModuleRegisterComponent implements OnInit {
 
   async getScreenList() {
     const screen = await this.screenProvider.findAll();
-    this.dataTable = screen;
+    this.dataTableScreen = screen;
   }
 
   async getModuleListActive() {
@@ -130,7 +131,7 @@ export class ModuleRegisterComponent implements OnInit {
     const data = this.screenForm.getRawValue();
     try {
       await this.screenProvider.store(data);
-      this.initForm();
+      this.screenForm.reset();
       this.moduleControl.reset();
       this.getScreenList();
       this.snackbarService.showAlert('Tela cadastrada com sucesso!');
