@@ -16,6 +16,7 @@
   },
 
   "validators": {
-    "required": "Campo obrigatório"
+    "required": "Campo obrigatório", 
+    "select-option": "Selecione uma opção"
   }
 }

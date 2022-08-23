@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { ModuleProvider } from 'src/providers/module.provider';
 import { ScreenProvider } from 'src/providers/screen.provicer';
+import { RequireMatch } from 'src/services/autocomplete.service';
 
 import { ErrorStateMatcherService } from 'src/services/error.state.matcher.service';
 import { SnackBarService } from 'src/services/snackbar.service';
@@ -42,8 +43,8 @@ export class ScreenRegisterComponent implements OnInit {
   method: string = '';
   filteredModuleList: any;
   module!: any;
-  moduleControl = new FormControl();
-  moduleValid: boolean = false;
+  moduleControl = new FormControl('', [Validators.required, RequireMatch]);
+
 
   displayedColumns: string[] = ['moduleName', 'screenName'];
 
@@ -77,11 +78,6 @@ export class ScreenRegisterComponent implements OnInit {
       .pipe(debounceTime(350), distinctUntilChanged())
       .subscribe((res) => {
         this._filter(res);
-        if (res && res.id) {
-          this.moduleValid = true;
-        } else {
-          this.moduleValid = false;
-        }
       });
   }
 

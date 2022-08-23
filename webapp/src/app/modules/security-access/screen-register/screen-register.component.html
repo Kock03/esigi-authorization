@@ -21,7 +21,24 @@
             matInput
             [matAutocomplete]="auto"
             [formControl]="moduleControl"
+            [errorStateMatcher]="matcher"
           />
+          <mat-error
+          *ngIf="
+          moduleControl && moduleControl.hasError('required')
+          "
+        >
+          {{ "validators.required" | translate }}
+        </mat-error>
+        <mat-error
+          *ngIf="
+          moduleControl &&
+            !moduleControl.hasError('required') &&
+            moduleControl.hasError('incorrect')
+          "
+        >
+          {{ "validators.select-option" | translate }}
+        </mat-error>
           <mat-autocomplete
             autoActiveFirstOption
             #auto="matAutocomplete"
@@ -52,7 +69,7 @@
           >Inativo</mat-checkbox
         >
         <div fxLayoutAlign="center" class="button" fxFlex="10">
-          <button [disabled]="moduleValid === false || screenForm.invalid" (click)="saveScreen()" mat-flat-button color="primary">
+          <button [disabled]="screenForm.invalid || moduleControl.invalid" (click)="saveScreen()" mat-flat-button color="primary">
             <mat-icon>save</mat-icon>
           </button>
         </div>
