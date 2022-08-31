@@ -45,10 +45,41 @@
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="inactive">
+        <!-- <ng-container matColumnDef="inactive">
           <th mat-header-cell *matHeaderCellDef>Status</th>
           <td mat-cell *matCellDef="let Module">
             {{ Module.inactive == true ? "Inativo" : "Ativo" }}
+          </td>
+        </ng-container> -->
+        
+        <ng-container matColumnDef="inactive">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            style="margin-top: 17px; margin-left: 50px"
+          >
+          Status
+          </th>
+          <td mat-cell class="information" *matCellDef="let Module">
+            <div
+              [ngStyle]="
+                  Module.inactive == 1
+                  ? {
+                    'background-image': 'url(../assets/icons/toggle3-red.png);',
+                      'max-width': '70px;',
+                      height: '40px;',
+                      'text-align': 'center'
+                    }
+                  : {
+                    'background-image': 'url(../assets/icons/toggle3-green.png);',
+                      'max-width': '70px;',
+                      height: '40px;',
+                      'text-align': 'center'
+                    }
+              "
+            >
+              
+            </div>
           </td>
         </ng-container>
 
