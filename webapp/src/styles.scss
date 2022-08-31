@@ -218,6 +218,34 @@ html {
   text-align: center;
 }
 
+.checkbox{
+  margin-top: 18px;
+}
+
+.form-checkbox{
+  margin-top: 3px;
+}
+
+.custom-frame {
+  & .mat-checkbox-background, .mat-checkbox-frame {
+    border-radius: 70% !important;
+    // width: 20px;
+    // height: 20px;
+  }
+}
+
+.mat-option:hover{
+  background: #D0E7EF !important;
+}
+
+.mat-selected{
+  background: #D0E7EF !important;
+}
+
+.mat-row:hover{
+  background: #D0E7EF !important;
+}
+
 html,
 body {
   height: 100%;

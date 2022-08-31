@@ -17,27 +17,11 @@ export class AppComponent {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
-  menuList = [
-    {
-      name: 'Módulos / Telas',
-      icon: 'view_module',
-      selected: false,
-      action: 'modulos',
-    },
-    // {
-    //   name: 'Segurança Telas',
-    //   icon: 'preview',
-    //   selected: false,
-    //   action: 'telas',
-    // },
-    {
-      name: 'Segurança Perfis',
-      icon: 'person',
-      selected: false,
-      action: 'perfis',
-    },
-  ];
+  openTree: boolean = false;
+  compare!: any
 
+  modulos: string = 'modulo';
+  perfis: string = 'perfil';
   collaboratorId!: string | null;
 
   constructor(
@@ -58,6 +42,23 @@ export class AppComponent {
       .subscribe((res: any) => {
         this.activeMenu = res.url.split('/')[1];
       });
+  }
+
+  recize() {
+
+    this.openTree = this.openTree === true ? false : true;
+  }
+
+  navigator(route: any) {
+    console.log("🚀 ~ file: app.component.ts ~ line 79 ~ AppComponent ~ navigator ~ route", route)
+    switch (route) {
+      case 'modulo':
+        this.router.navigate(['/modulos']);
+        break;
+      case 'perfil':
+        this.router.navigate(['/perfis']);
+        break;
+    }
   }
 
   viewEdit() {
