@@ -15,8 +15,9 @@
             {{ "validators.required" | translate }}
           </mat-error>
         </mat-form-field>
-        <mat-checkbox class="checkbox" color="primary" fxFlex="6" formControlName="inactive"
-          fxLayoutAlign="center start">Inativo</mat-checkbox>
+          <div class="checkbox" >
+            <mat-checkbox color="primary" class="custom-check" class="custom-frame" formControlName="inactive" fxLayoutAlign="center center">Inativo</mat-checkbox>
+          </div>
         <div class="button" fxFlex="10" fxLayoutAlign="center">
           <button [disabled]="moduleForm.invalid" mat-flat-button color="primary" (click)="saveModule()">
             <mat-icon>save</mat-icon>
@@ -44,10 +45,41 @@
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="inactive">
+        <!-- <ng-container matColumnDef="inactive">
           <th mat-header-cell *matHeaderCellDef>Status</th>
           <td mat-cell *matCellDef="let Module">
             {{ Module.inactive == true ? "Inativo" : "Ativo" }}
+          </td>
+        </ng-container> -->
+        
+        <ng-container matColumnDef="inactive">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            style="margin-top: 17px; margin-left: 50px"
+          >
+          Status
+          </th>
+          <td mat-cell class="information" *matCellDef="let Module">
+            <div
+              [ngStyle]="
+                  Module.inactive == 1
+                  ? {
+                    'background-image': 'url(../assets/icons/toggle3-red.png);',
+                      'max-width': '70px;',
+                      height: '40px;',
+                      'text-align': 'center'
+                    }
+                  : {
+                    'background-image': 'url(../assets/icons/toggle3-green.png);',
+                      'max-width': '70px;',
+                      height: '40px;',
+                      'text-align': 'center'
+                    }
+              "
+            >
+              
+            </div>
           </td>
         </ng-container>
 
@@ -71,13 +103,13 @@
           <mat-label>Módulos</mat-label>
           <input type="text" placeholder="Módulo" aria-label="text" #filter matInput [matAutocomplete]="auto"
             [formControl]="moduleControl" />
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
+          <mat-autocomplete  fxFlex="45"  autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
             <mat-option *ngFor="let module of filteredModules" [value]="module">
               {{ module.name }}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
-        <mat-form-field fxFlex="40" appearance="outline">
+        <mat-form-field fxFlex="45" appearance="outline">
           <mat-label>Nome da Tela</mat-label>
           <input matInput placeholder="Nome da tela" formControlName="name" [errorStateMatcher]="matcher" />
           <mat-error *ngIf="
@@ -86,8 +118,9 @@
             {{ "validators.required" | translate }}
           </mat-error>
         </mat-form-field>
-        <mat-checkbox class="checkbox" color="primary" fxFlex="6" formControlName="inactive"
-          fxLayoutAlign="center start">Inativo</mat-checkbox>
+        <div class="checkbox" >
+            <mat-checkbox color="primary" class="custom-check" class="custom-frame" formControlName="inactive" fxLayoutAlign="center center">Inativo</mat-checkbox>
+          </div>
         <div fxLayoutAlign="center" class="button" fxFlex="10">
           <button [disabled]="moduleValid === false || screenForm.invalid" (click)="saveScreen()" mat-flat-button
             color="primary">
