@@ -20,8 +20,8 @@ export class AppComponent {
   openTree: boolean = false;
   compare!: any
 
-  modulos: string = 'modulo';
-  perfis: string = 'perfil';
+  modulo: string = 'modulos';
+  perfil: string = 'perfis';
   collaboratorId!: string | null;
 
   constructor(
