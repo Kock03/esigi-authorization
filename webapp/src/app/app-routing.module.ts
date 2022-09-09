@@ -6,6 +6,11 @@ import { ScreenRegisterComponent } from './modules/security-access/screen-regist
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'modulos',
+    pathMatch: 'full',
+  },
+  {
     path: 'modulos',
     component: ModuleRegisterComponent,
   },
