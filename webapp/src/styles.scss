@@ -67,7 +67,7 @@ html {
 
 .pages {
   padding: 32px 32px 0;
-  max-width: 1280px;
+  // max-width: 1280px;
   margin: auto;
   height: calc(100% - 450px) !important;
 }
@@ -75,13 +75,14 @@ html {
 .content-screen {
   margin-top: 600px;
   padding: 32px 32px 0;
-  max-width: 1280px;
+  max-width: 1650px !important;
   margin: auto;
 }
 
 .page {
+  width: 100%;
   padding: 32px 32px 0;
-  max-width: 1280px;
+  max-width: 1650px !important;
   margin: auto;
   height: calc(100% - 64px);
 }

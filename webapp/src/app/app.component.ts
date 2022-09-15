@@ -20,8 +20,8 @@ export class AppComponent {
   openTree: boolean = false;
   compare!: any
 
-  modulos: string = 'modulo';
-  perfis: string = 'perfil';
+  modulo: string = 'modulos';
+  perfil: string = 'perfis';
   collaboratorId!: string | null;
 
   constructor(
@@ -50,7 +50,6 @@ export class AppComponent {
   }
 
   navigator(route: any) {
-    console.log("🚀 ~ file: app.component.ts ~ line 79 ~ AppComponent ~ navigator ~ route", route)
     switch (route) {
       case 'modulo':
         this.router.navigate(['/modulos']);
