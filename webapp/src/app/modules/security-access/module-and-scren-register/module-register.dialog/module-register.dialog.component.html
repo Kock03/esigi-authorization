@@ -1,0 +1,34 @@
+<div id="module">
+    <div class="button-screen-dialog-control">
+      <mat-panel-title class="resource-box" fxLayout="row">
+        <mat-icon class="icon-ressource-dialog">account_circle</mat-icon>
+        <button disabled class="button-resource" mat-button>
+          <h2 fxLayoutAlign="start">Cadastro de Módulos</h2>
+        </button>
+        <button (click)="close()" class="cancel-icon" mat-button>
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-panel-title>
+    </div>
+<form [formGroup]="moduleForm" fxLayout="column" class="form-content">
+    <div fxFlex="100" fxLayoutGap="16">
+      <mat-form-field fxFlex="50" appearance="outline">
+        <mat-label>{{ "access_security.module_name" | translate }}</mat-label>
+        <input matInput placeholder="Nome do Módulo" formControlName="name" [errorStateMatcher]="matcher" />
+        <mat-error *ngIf="
+            moduleForm && moduleForm.controls['name'].hasError('required')
+          ">
+          {{ "validators.required" | translate }}
+        </mat-error>
+      </mat-form-field>
+        <div fxFlex="25" class="checkbox" >
+          <mat-checkbox color="primary" class="custom-check" class="custom-frame" formControlName="inactive" fxLayoutAlign="center center">Inativo</mat-checkbox>
+        </div>
+      <div class="button-form" fxFlex="25" fxLayoutAlign="center">
+        <button [disabled]="moduleForm.invalid" mat-flat-button color="primary" (click)="saveModule()">
+          <mat-icon>save</mat-icon>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

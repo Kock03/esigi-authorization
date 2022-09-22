@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModuleRegisterComponent } from './module-and-scren-register/module-register.component';
-import { ScreenRegisterComponent } from './screen-register/screen-register.component';
 import { ProfileRegisterComponent } from './profile-register/profile-register.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -19,13 +18,16 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {MatTreeModule} from '@angular/material/tree';
+import { ModuleRegisterDialogComponent } from './module-and-scren-register/module-register.dialog/module-register.dialog.component';
+import { ScreenRegisterDialogComponent } from './module-and-scren-register/screen-register.dialog/screen-register.dialog.component';
 
 
 @NgModule({
   declarations: [
     ModuleRegisterComponent,
-    ScreenRegisterComponent,
-    ProfileRegisterComponent
+    ProfileRegisterComponent,
+    ModuleRegisterDialogComponent,
+    ScreenRegisterDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -50,7 +52,6 @@ import {MatTreeModule} from '@angular/material/tree';
   ],
   entryComponents: [
     ModuleRegisterComponent,
-    ScreenRegisterComponent,
     ProfileRegisterComponent
   ],
 })

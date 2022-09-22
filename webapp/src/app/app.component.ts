@@ -13,7 +13,7 @@ import { UserService } from 'src/services/user.service';
 })
 export class AppComponent {
   title = 'profile-managemrnt';
-  activeMenu!: '';
+  activeMenu: string = '';
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
@@ -40,7 +40,11 @@ export class AppComponent {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((res: any) => {
-        this.activeMenu = res.url.split('/')[1];
+        if (res.url === '/') {
+          this.activeMenu = 'modulos';
+        } else {
+          this.activeMenu = res.url.split('/')[1];
+        }
       });
   }
 

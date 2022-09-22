@@ -1,74 +1,70 @@
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
-import {
-  FormGroup,
   FormBuilder,
-  Validators,
   FormControl,
+  FormGroup,
+  Validators,
 } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { ModuleProvider } from 'src/providers/module.provider';
 import { ScreenProvider } from 'src/providers/screen.provicer';
-import { RequireMatch } from 'src/services/autocomplete.service';
-
 import { ErrorStateMatcherService } from 'src/services/error.state.matcher.service';
 import { SnackBarService } from 'src/services/snackbar.service';
 
 @Component({
-  selector: 'app-screen-register',
-  templateUrl: './screen-register.component.html',
-  styleUrls: ['./screen-register.component.scss'],
+  selector: 'app-screen-register.dialog',
+  templateUrl: './screen-register.dialog.component.html',
+  styleUrls: ['./screen-register.dialog.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
-export class ScreenRegisterComponent implements OnInit {
-  @Output() onChange: EventEmitter<any> = new EventEmitter();
-  @ViewChild('filter', { static: true }) filter!: ElementRef;
+export class ScreenRegisterDialogComponent implements OnInit {
   screenForm!: FormGroup;
-  Screen: any;
+  matcher = new ErrorStateMatcherService();
+  moduleControl = new FormControl();
 
   modules!: any[] | any[];
   filteredModules?: any[];
-
-  matcher = new ErrorStateMatcherService();
-  index: any = null;
-  screen!: any;
-  dataTable: [] = [];
-  method: string = '';
   filteredModuleList: any;
-  module!: any;
-  moduleControl = new FormControl('', [Validators.required, RequireMatch]);
-
-
-  displayedColumns: string[] = ['moduleName', 'screenName'];
+  moduleValid: boolean = false;
 
   constructor(
-    private fb: FormBuilder,
-    private router: Router,
+    public dialogRef: MatDialogRef<ScreenRegisterDialogComponent>,
     private moduleProvider: ModuleProvider,
+    private fb: FormBuilder,
+    private snackbarService: SnackBarService,
     private screenProvider: ScreenProvider,
-    private snackbarService: SnackBarService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
-    this.getScreenList();
-    this.getModuleList();
+    this.getModuleListActive();
     this.initFilter();
   }
 
-  async getScreenList() {
-    const screen = await this.screenProvider.findAll();
-    this.dataTable = screen;
+  close() {
+    this.dialogRef.close();
+
   }
 
-  async getModuleList() {
+
+  initForm(): void {
+    this.screenForm = this.fb.group({
+      Module: [null],
+      name: ['', Validators.required],
+      inactive: [false],
+    });
+
+    this.moduleControl.valueChanges.subscribe((res) => {
+      if (res && res.id) {
+        this.screenForm.controls['Module'].setValue(res.id, {
+          emitEvent: true,
+        });
+      }
+    });
+  }
+
+  async getModuleListActive() {
     this.filteredModuleList = this.modules =
       await this.moduleProvider.findActive();
   }
@@ -78,6 +74,11 @@ export class ScreenRegisterComponent implements OnInit {
       .pipe(debounceTime(350), distinctUntilChanged())
       .subscribe((res) => {
         this._filter(res);
+        if (res && res.id) {
+          this.moduleValid = true;
+        } else {
+          this.moduleValid = false;
+        }
       });
   }
 
@@ -93,33 +94,22 @@ export class ScreenRegisterComponent implements OnInit {
     this.filteredModules = await this.moduleProvider.findByName(params);
   }
 
-  initForm() {
-    this.screenForm = this.fb.group({
-      Module: [null],
-      name: ['', Validators.required],
-      inactive: [false, Validators.required],
-    });
-
-    this.moduleControl.valueChanges.subscribe((res) => {
-      if (res && res.id) {
-        this.screenForm.controls['Module'].setValue(res.id, {
-          emitEvent: true,
-        });
-      }
-    });
-  }
-
   async saveScreen() {
     const data = this.screenForm.getRawValue();
+    if(data.inactive === null){
+      data.inactive = false;
+    }
     try {
       await this.screenProvider.store(data);
-      this.initForm();
+      this.screenForm.reset();
       this.moduleControl.reset();
-      this.getScreenList();
+      this.dialogRef.close();
       this.snackbarService.showAlert('Tela cadastrada com sucesso!');
     } catch (error: any) {
       console.log('ERROR 132' + error);
       this.snackbarService.showError('Falha ao cadastrar!');
     }
   }
+
+
 }
