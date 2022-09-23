@@ -26,6 +26,14 @@ export class ModuleService {
     return await this.moduleService.find(options);
   }
 
+  async screenModule() {
+    return await this.moduleService
+      .createQueryBuilder('modules')
+      .leftJoinAndSelect('modules.Screens', 'Screens')
+      .where('Screens.name is not null')
+      .getMany();
+  }
+
   findByName(query): Promise<ModuleEntity[]> {
     return this.moduleService.find({
       select: ['id', 'name'],

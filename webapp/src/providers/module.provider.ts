@@ -21,6 +21,16 @@ export class ModuleProvider {
     });
   }
 
+  screenModule(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.apiGateway
+        .get(environment.AUTHORIZATION_MS + 'modules/screen/list')
+        .subscribe((response: HttpResponse<any>) => {
+          resolve(response.body);
+        }, reject);
+    });
+  }
+
   findOne(id: string | null): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway

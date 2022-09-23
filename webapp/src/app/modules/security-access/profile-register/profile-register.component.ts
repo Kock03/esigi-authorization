@@ -59,17 +59,7 @@ export class ProfileRegisterComponent implements OnInit {
   }
 
   async getModule() {
-    this.modules = await this.moduleProvider.findAll();
-
-    for (let i = 0; i < this.modules.length; i++) {
-      const module = this.modules.findIndex(
-        (module: any) => module.Screens.length <= 0
-      );
-
-      if (module > -1) {
-        this.modules.splice(module, 1);
-      }
-    }
+    this.modules = await this.moduleProvider.screenModule();
     this.dataSource.data = this.modules;
   }
 

@@ -32,6 +32,11 @@ export class ModuleController {
     return this.moduleService.findByName(query);
   }
 
+  @Get('screen/list')
+  async screenModule() {
+    return this.moduleService.screenModule();
+  }
+
   @Get('list/active')
   async findActive() {
     return await this.moduleService.findActive();

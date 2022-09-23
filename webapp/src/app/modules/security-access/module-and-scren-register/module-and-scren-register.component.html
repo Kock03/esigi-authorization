@@ -1,30 +1,26 @@
 <div id="moduleRegister" class="pages">
-  <div class="title">
-    <h2 fxLayoutAlign="start">{{ "access_security.register" | translate }}</h2>
+  <div fxLayout="row" class="tab" fxLayoutGap="16px">
+    <div
+      [ngClass]="{ done: step > 0, active: step == 1 }"
+      (click)="handleStep(1)"
+      fxLayout="column"
+      class="tab-group"
+    >
+      <p class="tab-item">Cadastro de módulo</p>
+      <span class="tab-border"></span>
+    </div>
+    <div
+      [ngClass]="{ done: step > 1, active: step == 2, disabled: dataTableModule.length < 1}"
+      (click)="handleStep(2)"
+      fxLayout="column"
+      class="tab-group"
+    >
+      <p class="tab-item">Cadastro de tela</p>
+      <span class="tab-border"></span>
+    </div>
   </div>
 
-  <div class="content-scroll" *ngIf="moduleForm">
-    <form [formGroup]="moduleForm" fxLayout="column">
-      <div fxFlex="100" fxLayoutAlign="start" fxLayoutGap="16">
-        <mat-form-field fxFlex="85" appearance="outline">
-          <mat-label>{{ "access_security.module_name" | translate }}</mat-label>
-          <input matInput placeholder="Nome do Módulo" formControlName="name" [errorStateMatcher]="matcher" />
-          <mat-error *ngIf="
-              moduleForm && moduleForm.controls['name'].hasError('required')
-            ">
-            {{ "validators.required" | translate }}
-          </mat-error>
-        </mat-form-field>
-          <div class="checkbox" >
-            <mat-checkbox color="primary" class="custom-check" class="custom-frame" formControlName="inactive" fxLayoutAlign="center center">Inativo</mat-checkbox>
-          </div>
-        <div class="button" fxFlex="10" fxLayoutAlign="center">
-          <button [disabled]="moduleForm.invalid" mat-flat-button color="primary" (click)="saveModule()">
-            <mat-icon>save</mat-icon>
-          </button>
-        </div>
-      </div>
-    </form>
+  <div class="content-scroll" *ngIf="step === 1" fxLayout="row">
     <div class="envolti-table mat-elevation-z8" fxLayout="column">
       <table #table mat-table [dataSource]="dataTableModule" #Table>
         <ng-container matColumnDef="identifier">
@@ -45,91 +41,54 @@
           </td>
         </ng-container>
 
-        <!-- <ng-container matColumnDef="inactive">
-          <th mat-header-cell *matHeaderCellDef>Status</th>
-          <td mat-cell *matCellDef="let Module">
-            {{ Module.inactive == true ? "Inativo" : "Ativo" }}
-          </td>
-        </ng-container> -->
-        
         <ng-container matColumnDef="inactive">
           <th
             mat-header-cell
             *matHeaderCellDef
             style="margin-top: 17px; margin-left: 50px"
           >
-          Status
+            Status
           </th>
           <td mat-cell class="information" *matCellDef="let Module">
-            <div
-              [ngStyle]="
-                  Module.inactive == 1
-                  ? {
-                    'background-image': 'url(../assets/icons/toggle3-red.png);',
-                      'max-width': '70px;',
-                      height: '40px;',
-                      'text-align': 'center'
-                    }
-                  : {
-                    'background-image': 'url(../assets/icons/toggle3-green.png);',
-                      'max-width': '70px;',
-                      height: '40px;',
-                      'text-align': 'center'
-                    }
-              "
+            <button
+              disabled
+              [ngClass]="Module.inactive == 1 ? 'inactive' : 'active-button'"
+              mat-button
             >
-              
-            </div>
+              {{ Module.inactive == 1 ? "Inativo" : "Ativo" }}
+            </button>
           </td>
         </ng-container>
+        <ng-container matColumnDef="icon">
+          <th mat-header-cell *matHeaderCellDef style="text-align: end">
+            <button
+              class="edit-button"
+              mat-flat-button
+              (click)="openModuleDialog()"
+            >
+              <mat-icon>add</mat-icon>
+            </button>
+          </th>
+          <td
+            class="button-tab"
+            mat-cell
+            *matCellDef="let activity; let index = index"
+          ></td>
+        </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns; sticky: true"
+        ></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
     </div>
   </div>
-</div>
-
-<div id="screenDialog" class="content-screen">
-  <div class="titleScren">
-    <h2 fxLayoutAlign="start">
-      {{ "access_security.register_screen" | translate }}
-    </h2>
-  </div>
-  <div fxLayout="column" class="content-scroll" *ngIf="screenForm">
-    <form [formGroup]="screenForm" fxLayout="column">
-      <div fxFlex="100" fxLayoutAlign="space-between" fxLayoutGap="25px">
-        <mat-form-field fxFlex="45" class="example-full-width" appearance="outline">
-          <mat-label>Módulos</mat-label>
-          <input type="text" placeholder="Módulo" aria-label="text" #filter matInput [matAutocomplete]="auto"
-            [formControl]="moduleControl" />
-          <mat-autocomplete  fxFlex="45"  autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
-            <mat-option *ngFor="let module of filteredModules" [value]="module">
-              {{ module.name }}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-        <mat-form-field fxFlex="45" appearance="outline">
-          <mat-label>Nome da Tela</mat-label>
-          <input matInput placeholder="Nome da tela" formControlName="name" [errorStateMatcher]="matcher" />
-          <mat-error *ngIf="
-              screenForm && screenForm.controls['name'].hasError('required')
-            ">
-            {{ "validators.required" | translate }}
-          </mat-error>
-        </mat-form-field>
-        <div class="checkbox" >
-            <mat-checkbox color="primary" class="custom-check" class="custom-frame" formControlName="inactive" fxLayoutAlign="center center">Inativo</mat-checkbox>
-          </div>
-        <div fxLayoutAlign="center" class="button" fxFlex="10">
-          <button [disabled]="moduleValid === false || screenForm.invalid" (click)="saveScreen()" mat-flat-button
-            color="primary">
-            <mat-icon>save</mat-icon>
-          </button>
-        </div>
-      </div>
-    </form>
-
+  <div
+    class="content-scroll"
+    *ngIf="step === 2"
+    fxLayout="row"
+  >
     <div class="envolti-table mat-elevation-z8" fxLayout="column">
       <table #table mat-table [dataSource]="dataTableScreen" #Table>
         <ng-container matColumnDef="moduleName">
@@ -137,7 +96,7 @@
             {{ "access_security.module_name" | translate }}
           </th>
           <td mat-cell *matCellDef="let Screen">
-            {{ Screen.Module? Screen.Module.name : 'Módulo não encontrado' }}
+            {{ Screen.Module ? Screen.Module.name : "Módulo não encontrado" }}
           </td>
         </ng-container>
 
@@ -149,8 +108,26 @@
             {{ Screen.name }}
           </td>
         </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumnsScreen; sticky: true"></tr>
+        <ng-container matColumnDef="icon">
+          <th mat-header-cell *matHeaderCellDef style="text-align: end">
+            <button
+              class="edit-button"
+              mat-flat-button
+              (click)="openScreenDialog()"
+            >
+              <mat-icon>add</mat-icon>
+            </button>
+          </th>
+          <td
+            class="button-tab"
+            mat-cell
+            *matCellDef="let activity; let index = index"
+          ></td>
+        </ng-container>
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumnsScreen; sticky: true"
+        ></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumnsScreen"></tr>
       </table>
     </div>
