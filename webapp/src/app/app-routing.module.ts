@@ -6,10 +6,12 @@ import { ProfileRegisterComponent } from './modules/security-access/profile-regi
 const routes: Routes = [
   {
     path: '',
-
     redirectTo: 'modulos',
-
     pathMatch: 'full',
+  },
+  {
+    path: 'modulos',
+    component: ModuleRegisterComponent,
   },
   {
     path: 'modulos',
