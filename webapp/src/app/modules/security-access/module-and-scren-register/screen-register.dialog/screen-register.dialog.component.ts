@@ -9,6 +9,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { ModuleProvider } from 'src/providers/module.provider';
 import { ScreenProvider } from 'src/providers/screen.provicer';
+import { RequireMatch } from 'src/services/autocomplete.service';
 import { ErrorStateMatcherService } from 'src/services/error.state.matcher.service';
 import { SnackBarService } from 'src/services/snackbar.service';
 
@@ -21,7 +22,7 @@ import { SnackBarService } from 'src/services/snackbar.service';
 export class ScreenRegisterDialogComponent implements OnInit {
   screenForm!: FormGroup;
   matcher = new ErrorStateMatcherService();
-  moduleControl = new FormControl();
+  moduleControl = new FormControl('', [Validators.required, RequireMatch]);
 
   modules!: any[] | any[];
   filteredModules?: any[];

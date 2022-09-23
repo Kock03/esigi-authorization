@@ -10,7 +10,7 @@
       <span class="tab-border"></span>
     </div>
     <div
-      [ngClass]="{ done: step > 1, active: step == 2 }"
+      [ngClass]="{ done: step > 1, active: step == 2, disabled: dataTableModule.length < 1}"
       (click)="handleStep(2)"
       fxLayout="column"
       class="tab-group"
@@ -86,7 +86,7 @@
   </div>
   <div
     class="content-scroll"
-    *ngIf="step === 2 && dataTableScreen.length > 0"
+    *ngIf="step === 2"
     fxLayout="row"
   >
     <div class="envolti-table mat-elevation-z8" fxLayout="column">

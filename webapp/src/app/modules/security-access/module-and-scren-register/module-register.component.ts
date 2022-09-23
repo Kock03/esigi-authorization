@@ -32,8 +32,6 @@ export class ModuleRegisterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.step = JSON.parse(sessionStorage.getItem('module_tab')!);
-
     this.getModuleList();
     this.getScreenList();
   }
@@ -49,13 +47,7 @@ export class ModuleRegisterComponent implements OnInit {
   }
 
   handleStep(number: number): void {
-    if (this.step - number < 1) {
       this.step = number;
-      sessionStorage.setItem('module_tab', this.step.toString());
-    } else {
-      this.step = number;
-      sessionStorage.setItem('module_tab', this.step.toString());
-    }
   }
 
   openScreenDialog() {

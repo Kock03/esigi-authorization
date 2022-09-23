@@ -61,6 +61,20 @@
             [matAutocomplete]="auto"
             [formControl]="moduleControl"
           />
+          <mat-error
+          *ngIf="
+          moduleControl && moduleControl.hasError('required')
+          ">
+          {{ "validators.required" | translate }}
+        </mat-error>
+        <mat-error
+          *ngIf="
+          moduleControl &&
+            !moduleControl.hasError('required') &&
+            moduleControl.hasError('incorrect')
+          ">
+           Escolha uma das opções!
+        </mat-error>
           <mat-autocomplete
             autoActiveFirstOption
             #auto="matAutocomplete"
