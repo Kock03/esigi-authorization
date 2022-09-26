@@ -63,10 +63,10 @@ export class AppComponent {
 
   navigator(route: any) {
     switch (route) {
-      case 'modulo':
+      case 'modulos':
         this.router.navigate(['/modulos']);
         break;
-      case 'perfil':
+      case 'perfis':
         this.router.navigate(['/perfis']);
         break;
     }
@@ -94,8 +94,8 @@ export class AppComponent {
     this.router.navigate([route]);
   }
 
-  openApp(): void {
-    location.replace(`http://192.168.8.184:3406/portal`);
+  openApp(port: number): void {
+    location.replace(`http://localhost:${port}`);
   }
 
   logout(): void {

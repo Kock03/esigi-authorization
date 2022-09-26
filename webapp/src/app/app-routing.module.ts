@@ -7,14 +7,16 @@ import { ProfileRegisterComponent } from './modules/security-access/profile-regi
 const routes: Routes = [
   {
     path: '',
-
     redirectTo: 'modulos',
-
     pathMatch: 'full',
   },
   {
     path: 'validate/:id',
     component: ValidateTokenComponent,
+  },
+  {
+    path: 'modulos',
+    component: ModuleRegisterComponent,
   },
   {
     path: 'modulos',
