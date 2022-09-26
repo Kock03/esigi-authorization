@@ -5,6 +5,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService } from 'src/services/user.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,7 @@ export class AppComponent {
   sidenav!: MatSidenav;
 
   openTree: boolean = false;
-  compare!: any
+  compare!: any;
 
   modulo: string = 'modulos';
   perfil: string = 'perfis';
@@ -38,8 +39,15 @@ export class AppComponent {
     this.translateService.setDefaultLang('pt-BR');
     this.translateService.use('pt-BR');
     this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
+      .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((res: any) => {
+        let valid = res.url.indexOf('validate');
+        if (valid === -1) {
+          let token = localStorage.getItem('token');
+          if (!token) {
+            location.replace(environment.portal);
+          }
+        }
         if (res.url === '/') {
           this.activeMenu = 'modulos';
         } else {
@@ -47,9 +55,9 @@ export class AppComponent {
         }
       });
   }
+  
 
   recize() {
-
     this.openTree = this.openTree === true ? false : true;
   }
 
@@ -67,8 +75,6 @@ export class AppComponent {
   viewEdit() {
     this.router.navigate(['edit/novo']);
   }
-
-
 
   ngAfterViewInit() {
     setTimeout(() => {

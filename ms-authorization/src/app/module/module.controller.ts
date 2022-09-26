@@ -8,20 +8,26 @@ import {
   Post,
   Put,
   Query,
+  UseGuards,
 } from '@nestjs/common';
+import { Roles } from 'src/decorators/role.decorator';
+import { AuthGuard } from 'src/guards/auth.guard';
 import { CreateModuleDto } from './dto/create-module.dto';
 import { UpdateModuleDto } from './dto/update-module.dto';
 import { ModuleService } from './module.service';
+
 
 @Controller('api/v1/modules')
 export class ModuleController {
   constructor(private readonly moduleService: ModuleService) { }
 
+  
   @Get()
   async index() {
     return await this.moduleService.findAll();
   }
 
+  
   @Get(':id')
   async show(@Param('id', new ParseUUIDPipe()) id: string) {
     return await this.moduleService.findOneOrFail({ id });
