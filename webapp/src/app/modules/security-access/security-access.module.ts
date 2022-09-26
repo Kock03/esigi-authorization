@@ -1,3 +1,5 @@
+
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModuleRegisterComponent } from './module-and-scren-register/module-register.component';
@@ -20,6 +22,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {MatTreeModule} from '@angular/material/tree';
 import { ModuleRegisterDialogComponent } from './module-and-scren-register/module-register.dialog/module-register.dialog.component';
 import { ScreenRegisterDialogComponent } from './module-and-scren-register/screen-register.dialog/screen-register.dialog.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -48,11 +51,13 @@ import { ScreenRegisterDialogComponent } from './module-and-scren-register/scree
     MatDialogModule,
     MatMenuModule,
     MatTableModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatProgressBarModule
   ],
   entryComponents: [
     ModuleRegisterComponent,
     ProfileRegisterComponent
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SecurityAccessModule { }

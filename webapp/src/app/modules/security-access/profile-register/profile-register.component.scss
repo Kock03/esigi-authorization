@@ -20,16 +20,61 @@
         height: calc(100% - 600px);
     }
 
-    .mat-tree-node{
-      background-color: #753bbd;
+    .mat-tree-node-superior{
+      background-color: #208fd8;
       color: #fff;
       padding-right: 16px;
-      border-radius: 32px;
+      border-radius: 10px;
       margin-top: 16px;
+      
     }
 
+    .mat-tree-node{
+      background-color: #fbfbfb !important;
+      color: #677076;
+      padding-right: 16px;
+      // margin-left: 0 !important;
+      // border-radius: 10px;
+      
+    }
+
+    // .custom-frame {
+    //   & .mat-checkbox-background,
+    //   .mat-checkbox-frame {
+    //     border-radius: 70% !important;
+    //     // width: 20px;
+    //     // height: 20px;
+    //   }
+    // }
+
+    .header-group{
+      font-size: 20px;
+    }
+
+    .divider{
+      height: 5px !important;
+      background-color: black;
+    }
+
+    // .progress-bar{
+    //   margin-top: 50px;
+    //   width: 1050% !important;
+    // }
+
     .example-margin{ 
-        color: #fff;
+        color: #fbfbfb
+    }
+
+    .box-check{
+      margin-right: 10px !important;
+    }
+
+    // .example-check{
+    //   margin-right: 10px !important;
+    // }
+
+    .mat-icon-rtl-mirror{
+      margin-top: 3px !important;
     }
 
 
@@ -62,6 +107,17 @@
         margin-right: 10px;
     }
 
+}
+
+::ng-deep.custom-frame {
+  & .mat-checkbox-background,
+  .mat-checkbox-frame {
+    border-radius: 70% !important;
+    color: #677076 !important;
+    background-color: #677076;
+    // width: 20px;
+    // height: 20px;
+  }
 }
 
 

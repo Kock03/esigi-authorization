@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +30,8 @@ import { ConfirmDialogService } from 'src/services/confirn-dialog.service'
 import { SecurityAccessModule } from './modules/security-access/security-access.module';
 import { MAT_SELECT_SCROLL_STRATEGY_PROVIDER } from '@angular/material/select';
 import { MAT_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@angular/material/tooltip';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {
   MatAutocompleteModule,
   MAT_AUTOCOMPLETE_SCROLL_STRATEGY,
@@ -65,9 +68,12 @@ import {
     MatInputModule,
     MatTableModule,
     MatAutocompleteModule,
+    MatCheckboxModule,
+    MatProgressBarModule,
   ],
   providers: [SnackBarService, ConfirmDialogService],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}
 
