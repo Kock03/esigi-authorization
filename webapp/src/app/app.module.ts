@@ -36,9 +36,11 @@ import {
   MatAutocompleteModule,
   MAT_AUTOCOMPLETE_SCROLL_STRATEGY,
 } from '@angular/material/autocomplete';
+import { ValidateTokenComponent } from './components/validate-token/validate-token.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [AppComponent, SnackBarComponent],
+  declarations: [AppComponent, SnackBarComponent, ValidateTokenComponent],
   imports: [
     NgxMaskModule.forRoot(),
     BrowserModule,
