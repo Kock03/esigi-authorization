@@ -70,7 +70,16 @@
           </mat-nested-tree-node>
           <mat-tree-node *matTreeNodeDef="let node" >
             <div class="mat-tree-node"  fxLayout="row" fxFlex="100" class="permissionGlobal" >
-              <div fxLayout="row" fxFlex="50" fxLayoutAlign="start center">
+              <div>
+                <mat-checkbox
+                fxFlex="5"
+                class="custom-frame"  
+                class="example-checkbox"
+                [checked]="checked"
+                [disabled]="true"
+              ></mat-checkbox>
+              </div>
+              <div class="subtitle-group" fxLayout="row" fxFlex="45" fxLayoutAlign="start center">
                 {{ node.name }}
               </div>
               <div fxFlex="50" class="box-check" fxLayoutAlign="space-between center">
@@ -79,6 +88,7 @@
                   class="custom-frame"
                   (change)="function($event, 'acess', node.id)"  
                   class="example-margin"
+                  class="custom-check"
                 ></mat-checkbox>
                 </div>
 
