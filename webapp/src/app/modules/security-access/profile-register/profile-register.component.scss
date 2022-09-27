@@ -7,10 +7,6 @@
         padding: 20px;
     }
 
-    .checkbox{
-        margin-top: 20px;
-    }
-
     .title{
       margin-left: 20px;
     }
@@ -38,14 +34,14 @@
       
     }
 
-    // .custom-frame {
-    //   & .mat-checkbox-background,
-    //   .mat-checkbox-frame {
-    //     border-radius: 70% !important;
-    //     // width: 20px;
-    //     // height: 20px;
-    //   }
-    // }
+    .custom-frame {
+      & .mat-checkbox-background,
+      .mat-checkbox-frame {
+        border-radius: 70% !important;
+        // width: 20px;
+        // height: 20px;
+      }
+    }
 
     .header-group{
       font-size: 20px;
@@ -54,7 +50,7 @@
 
     .subtitle-group{
       margin-left: 15px !important;
-      margin-top: 5px !important;
+      margin-top: 4.2px !important;
     }
 
     // .custom-check{
@@ -62,7 +58,7 @@
     // }
 
     .example-checkbox{
-      margin-top: 4px !important;
+      margin-top: 2px !important;
     }
 
     .mat-icon-rtl{
@@ -80,8 +76,10 @@
     //   width: 1050% !important;
     // }
 
+
     .example-margin{ 
-        color: #fbfbfb
+        color: #fbfbfb;
+        margin-top: 0 !important;
     }
 
     .box-check{
@@ -130,6 +128,10 @@
     mat-tree-node:hover{
       background: #D0E7EF !important;
       border-radius: 10px !important;
+    }
+
+    mat-tree{
+      background-color: transparent !important;
     }
     
     .mat-tree-node-superior:hover{
