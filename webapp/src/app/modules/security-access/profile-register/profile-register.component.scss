@@ -127,6 +127,18 @@
         margin-right: 10px;
     }
 
+    // mat-tree-node:hover{
+    //   background: #D0E7EF !important;
+    // }
+    
+    mat-nested-tree-node:hover{
+      background: yellow !important;
+    }
+
+    mat-nested-tree-node{
+      border-radius: 10px !important;
+    }
+
 }
 
 ::ng-deep.custom-frame {
