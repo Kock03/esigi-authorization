@@ -242,9 +242,6 @@ html {
   }
 }
 
-.mat-option:hover{
-  background: #D0E7EF !important;
-}
 
 .mat-selected{
   background: #D0E7EF !important;
@@ -266,6 +263,15 @@ th{
   font-size: 16px !important;
 }
 
+mat-treee:hover{
+  background: #D0E7EF !important;
+}
+
+
+// mat-checkbox{
+//   border-radius: 70% !important;
+// }
+
 html,
 body {
   height: 100%;
@@ -284,4 +290,17 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+
+::ng-deep.custom-frame {
+  & .mat-checkbox-background,
+  .mat-checkbox-frame {
+    border-radius: 70% !important;
+    color: #677076 !important;
+    background-color: #677076;
+    // width: 20px;
+    // height: 20px;
+  }
 }

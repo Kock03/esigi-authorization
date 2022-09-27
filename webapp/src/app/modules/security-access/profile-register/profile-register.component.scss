@@ -7,10 +7,6 @@
         padding: 20px;
     }
 
-    .checkbox{
-        margin-top: 20px;
-    }
-
     .title{
       margin-left: 20px;
     }
@@ -20,16 +16,83 @@
         height: calc(100% - 600px);
     }
 
-    .mat-tree-node{
-      background-color: #753bbd;
+    .mat-tree-node-superior{
+      background-color: #208fd8;
       color: #fff;
       padding-right: 16px;
-      border-radius: 32px;
+      border-radius: 10px;
       margin-top: 16px;
+      
     }
 
+    .mat-tree-node{
+      background-color: #fbfbfb !important;
+      color: #677076;
+      padding-right: 16px;
+      // margin-left: 0 !important;
+      // border-radius: 10px;
+      
+    }
+
+    .custom-frame {
+      & .mat-checkbox-background,
+      .mat-checkbox-frame {
+        border-radius: 70% !important;
+        // width: 20px;
+        // height: 20px;
+      }
+    }
+
+    .header-group{
+      font-size: 20px;
+      margin-top: 0 !important;
+    }
+
+    .subtitle-group{
+      margin-left: 15px !important;
+      margin-top: 4.2px !important;
+    }
+
+    // .custom-check{
+    //   margin-left: 0 !important;
+    // }
+
+    .example-checkbox{
+      margin-top: 2px !important;
+    }
+
+    .mat-icon-rtl{
+      margin-top: 0 !important;
+    }
+    
+
+    .divider{
+      height: 5px !important;
+      background-color: black;
+    }
+
+    // .progress-bar{
+    //   margin-top: 50px;
+    //   width: 1050% !important;
+    // }
+
+
     .example-margin{ 
-        color: #fff;
+        color: #fbfbfb;
+        margin-top: 0 !important;
+    }
+
+    .box-check{
+      margin-right: 10px !important;
+      margin-left: 35px !important;
+    }
+
+    // .example-subtitle{
+    //   margin-left: 10px  !important;
+    // }
+
+    .mat-icon-rtl-mirror{
+      margin-top: 3px !important;
     }
 
 
@@ -62,6 +125,29 @@
         margin-right: 10px;
     }
 
+    mat-tree-node:hover{
+      background: #D0E7EF !important;
+      border-radius: 10px !important;
+    }
+
+    mat-tree{
+      background-color: transparent !important;
+    }
+    
+    .mat-tree-node-superior:hover{
+      background: #009CDE!important;
+    }
+}
+
+::ng-deep.custom-frame {
+  & .mat-checkbox-background,
+  .mat-checkbox-frame {
+    border-radius: 70% !important;
+    color: #677076 !important;
+    background-color: #677076;
+    // width: 20px;
+    // height: 20px;
+  }
 }
 
 

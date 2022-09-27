@@ -28,6 +28,8 @@ export class ProfileRegisterComponent implements OnInit {
   screenUpdate: any[] = [];
   screenDelete: any[] = [];
 
+  checked = false;
+ 
   matcher = new ErrorStateMatcherService();
   profileForm!: FormGroup;
   data: [] = [];
@@ -66,6 +68,7 @@ export class ProfileRegisterComponent implements OnInit {
   initForm(): void {
     this.profileForm = this.fb.group({
       name: ['', Validators.required],
+      // accesModule: [false],
       Role: this.fb.group({
         Acess: this.fb.group({ Screens: [] }),
         Add: this.fb.group({ Screens: [] }),
@@ -76,6 +79,12 @@ export class ProfileRegisterComponent implements OnInit {
   }
 
   function(event: any, name: string, screenId: string): any {
+    if(name === 'acess' || name === 'add' ||  name === 'update' || name === 'delete'){
+      this.checked = this.checked === true ? false : true;
+    } 
+    if(this.checked = this.checked && name === 'acess' || name === 'add' ||  name === 'update' || name === 'delete'){
+      this.checked = true;
+    }
     let value = this.profileForm.controls['Role'];
     let screen = { id: screenId };
 
