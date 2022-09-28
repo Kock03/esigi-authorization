@@ -84,6 +84,7 @@
               <div fxFlex="50" class="box-check" fxLayoutAlign="space-between center">
                 <div>
                   <mat-checkbox
+                  color="primary"
                   class="custom-frame example-margin custom-check"
                   (change)="function($event, 'acess', node.id)"  
                 ></mat-checkbox>
@@ -91,16 +92,19 @@
 
 
                 <mat-checkbox
+                color="primary"
                 class="custom-frame example-margin"
                 (change)="function($event, 'add', node.id)"  
                 ></mat-checkbox>
 
                 <mat-checkbox
+                color="primary"
                 class="custom-frame example-margin"
                 (change)="function($event, 'update', node.id)"  
                 ></mat-checkbox>
 
                 <mat-checkbox
+                color="primary"
                 class="custom-frame example-margin example-check"
                 (change)="function($event, 'delete', node.id)"  
                 ></mat-checkbox>

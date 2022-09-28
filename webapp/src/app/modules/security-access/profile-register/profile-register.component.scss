@@ -38,6 +38,7 @@
       & .mat-checkbox-background,
       .mat-checkbox-frame {
         border-radius: 70% !important;
+        // background-image: url(../assets/icons/fundo-branco.jpg);
         // width: 20px;
         // height: 20px;
       }
@@ -143,8 +144,6 @@
   & .mat-checkbox-background,
   .mat-checkbox-frame {
     border-radius: 70% !important;
-    color: #677076 !important;
-    background-color: #677076;
     // width: 20px;
     // height: 20px;
   }
