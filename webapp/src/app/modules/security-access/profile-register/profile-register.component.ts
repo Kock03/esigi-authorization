@@ -29,7 +29,6 @@ export class ProfileRegisterComponent implements OnInit {
   screenDelete: any[] = [];
 
   checked = false;
- 
   matcher = new ErrorStateMatcherService();
   profileForm!: FormGroup;
   data: [] = [];
@@ -62,7 +61,7 @@ export class ProfileRegisterComponent implements OnInit {
 
   async getModule() {
     this.modules = await this.moduleProvider.screenModule();
-    this.dataSource.data = this.modules;
+    this.dataSource.data = await this.modules;
   }
 
   initForm(): void {

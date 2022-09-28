@@ -242,6 +242,11 @@ html {
   }
 }
 
+mat-dialog-container {
+  padding: 0 !important;
+  border-radius: 10px !important;
+}
+
 
 .mat-selected{
   background: #D0E7EF !important;
