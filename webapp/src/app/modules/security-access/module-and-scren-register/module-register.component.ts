@@ -52,8 +52,8 @@ export class ModuleRegisterComponent implements OnInit {
 
   openScreenDialog() {
     const dialogRef = this.dialog.open(ScreenRegisterDialogComponent, {
-      width: '750px',
-      height: '30s0px',
+      width: '650px',
+      height: '280px',
     });
 
     dialogRef.afterClosed().subscribe((res) => {
@@ -63,8 +63,8 @@ export class ModuleRegisterComponent implements OnInit {
 
   openModuleDialog() {
     const dialogRef = this.dialog.open(ModuleRegisterDialogComponent, {
-      width: '750px',
-      height: '30s0px',
+      width: '500px',
+      height: '200px',
     });
 
     dialogRef.afterClosed().subscribe((res) => {
