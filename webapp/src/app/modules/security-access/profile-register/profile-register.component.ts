@@ -152,4 +152,8 @@ export class ProfileRegisterComponent implements OnInit {
       this.snackbarService.showError('Falha ao cadastrar!');
     }
   }
+
+  goHome(port: number): void {
+    location.replace(`http://localhost:${port}/portal`);
+  }
 }

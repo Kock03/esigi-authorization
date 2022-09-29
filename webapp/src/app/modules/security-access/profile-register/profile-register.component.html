@@ -1,6 +1,9 @@
 <div id="profileRegister" class="page">
-  <div class="profileRegisterH2">
-    <h2 fxLayoutAlign="start" class="title">Cadastro de perfis</h2>
+  <div  fxLayout="row">
+    <button  mat-icon-button    (click)="goHome(3406)" color="primary">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <h2 class="title">Cadastro de perfis</h2>
   </div>
   <div class="content-scroll" *ngIf="profileForm">
     <form [formGroup]="profileForm" fxLayout="column">

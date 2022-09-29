@@ -1,5 +1,8 @@
 <div id="moduleRegister" class="pages">
   <div fxLayout="row" class="tab" fxLayoutGap="16px">
+    <button  mat-icon-button class="btn-back" (click)="goHome(3406)" color="primary">
+      <mat-icon >chevron_left</mat-icon>
+    </button>
     <div
       [ngClass]="{ done: step > 0, active: step == 1 }"
       (click)="handleStep(1)"

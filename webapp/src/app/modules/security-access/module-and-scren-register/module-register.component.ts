@@ -71,4 +71,8 @@ export class ModuleRegisterComponent implements OnInit {
       this.getModuleList();
     });
   }
+
+  goHome(port: number): void {
+    location.replace(`http://localhost:${port}/portal`);
+  }
 }
