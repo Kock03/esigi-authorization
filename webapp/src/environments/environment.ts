@@ -7,6 +7,7 @@ export const environment = {
 
   AUTHORIZATION_MS: 'localhost:3507/api/v1/',
   portal: 'http://localhost:3406/login',
+  port: 'http://localhost:',
   message: 'LOCAL',
   protocol: 'http',
 };
