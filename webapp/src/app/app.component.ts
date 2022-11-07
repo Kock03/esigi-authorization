@@ -68,10 +68,10 @@ export class AppComponent {
         location.replace(`http://192.168.8.184:3406/validate/${this.token}`);
         break;
       case 'modulos':
-        location.replace(`http://192.168.8.184:3405/modulos/validate/${this.token}`);
+        this.router.navigate(['modulos']); 
         break;
       case 'perfis':
-        location.replace(`http://192.168.8.184:3405/perfis/validate/${this.token}`);
+        this.router.navigate(['perfis']); 
         break;
     }
   }
