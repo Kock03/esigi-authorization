@@ -29,10 +29,10 @@ import { AuthGuard } from './guards/auth.guard';
   ), ModuleModule, ScreensModule, RoleModule, AcessModule, AddModule, DeleteModule, UpdateModule, ProfilesModule],
   controllers: [],
   providers: [
-    {
-      provide: APP_GUARD,
-      useClass: AuthGuard,
-    },
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: AuthGuard,
+    // },
   ],
 })
 export class AppModule { }
