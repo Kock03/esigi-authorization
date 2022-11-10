@@ -21,6 +21,7 @@ export class ModuleRegisterComponent implements OnInit {
   screen!: any;
   method: string = '';
   module!: any;
+  token!: string;
 
   displayedColumnsScreen: string[] = ['moduleName', 'screenName', 'icon'];
   displayedColumns: string[] = ['identifier', 'moduleName', 'inactive', 'icon'];
@@ -72,7 +73,7 @@ export class ModuleRegisterComponent implements OnInit {
     });
   }
 
-  goHome(port: number): void {
-    location.replace(`http://localhost:${port}/portal`);
+  goHome(): void {
+    location.replace(`http://192.168.8.184:3406/validate/${this.token}`);
   }
 }

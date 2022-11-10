@@ -27,6 +27,7 @@ export class ProfileRegisterComponent implements OnInit {
   screenAdd: any[] = [];
   screenUpdate: any[] = [];
   screenDelete: any[] = [];
+  token!: string;
 
   checked = false;
   matcher = new ErrorStateMatcherService();
@@ -153,7 +154,7 @@ export class ProfileRegisterComponent implements OnInit {
     }
   }
 
-  goHome(port: number): void {
-    location.replace(`http://localhost:${port}/portal`);
+  goHome(): void {
+    location.replace(`http://192.168.8.184:3406/validate/${this.token}`);
   }
 }

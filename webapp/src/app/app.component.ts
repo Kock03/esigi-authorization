@@ -21,7 +21,7 @@ export class AppComponent {
   openTree: boolean = false;
   compare!: any;
   token!: string;
-
+  home: string = 'portal';
   modulo: string = 'modulos';
   perfil: string = 'perfis';
   collaboratorId!: string | null;
@@ -64,11 +64,14 @@ export class AppComponent {
 
   navigator(route: any) {
     switch (route) {
+      case 'portal':
+        location.replace(`http://192.168.8.184:3406/validate/${this.token}`);
+        break;
       case 'modulos':
-        this.router.navigate(['/modulos']);
+        this.router.navigate(['modulos']); 
         break;
       case 'perfis':
-        this.router.navigate(['/perfis']);
+        this.router.navigate(['perfis']); 
         break;
     }
   }
