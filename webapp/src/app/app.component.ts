@@ -65,7 +65,7 @@ export class AppComponent {
   navigator(route: any) {
     switch (route) {
       case 'portal':
-        location.replace(`http://44.198.33.18:3406/validate/${this.token}`);
+        location.replace(`http://44.205.159.254:3406/validate/${this.token}`);
         break;
       case 'modulos':
         this.router.navigate(['modulos']); 
