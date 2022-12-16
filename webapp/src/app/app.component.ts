@@ -65,6 +65,7 @@ export class AppComponent {
   navigator(route: any) {
     switch (route) {
       case 'portal':
+        this.token = localStorage.getItem('token')!;
         location.replace(`http://192.168.8.184:3406/validate/${this.token}`);
         break;
       case 'modulos':
