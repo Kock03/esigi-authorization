@@ -5,9 +5,9 @@
 export const environment = {
   production: false,
 
-  AUTHORIZATION_MS: 'localhost:3507/api/v1/',
-  portal: 'http://localhost:3406/login',
-  port: 'http://localhost:',
+  AUTHORIZATION_MS: '44.205.159.254:3507/api/v1/',
+  portal: 'http://44.205.159.254:3406/login',
+  port: 'http://44.205.159.254:',
   message: 'LOCAL',
   protocol: 'http',
 };
