@@ -66,7 +66,7 @@ export class AppComponent {
     switch (route) {
       case 'portal':
         this.token = localStorage.getItem('token')!;
-        location.replace(`http://192.168.8.184:3406/validate/${this.token}`);
+        location.replace(`https://aws-amplify.d3tee2p1a2jxch.amplifyapp.com/validate/${this.token}`);
         break;
       case 'modulos':
         this.router.navigate(['modulos']); 
