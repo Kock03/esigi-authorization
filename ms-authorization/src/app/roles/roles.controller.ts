@@ -4,7 +4,7 @@ import { CreateRoleDto } from './dto/create-role.dto';
 import { UpdateRoleDto } from './dto/update-role.dto';
 import { AuthGuard } from '@nestjs/passport';
 
-@Controller('api/v1/roles')
+@Controller('authorization/api/v1/roles')
 export class RoleController {
     constructor(private readonly rolesService: RoleService) { }
 

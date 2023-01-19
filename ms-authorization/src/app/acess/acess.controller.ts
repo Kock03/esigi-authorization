@@ -10,7 +10,7 @@ import {
 import { AcessService } from './acess.service';
 import { CreateAcessDto } from './dto/create-acess.dto';
 
-@Controller('api/v1/acess')
+@Controller('authorization/api/v1/acess')
 export class AcessController {
   constructor(private readonly acessService: AcessService) {}
 

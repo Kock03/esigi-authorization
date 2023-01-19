@@ -3,7 +3,7 @@ import { CreateScreensDto } from './dto/create-screen.dto';
 import { UpdateScreensDto } from './dto/update-screen.dto';
 import { ScreensService } from './screens.service';
 
-@Controller('api/v1/screens')
+@Controller('authorization/api/v1/screens')
 export class ScreensController {
     constructor(private readonly screensService: ScreensService) { }
 

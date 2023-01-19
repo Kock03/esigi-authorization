@@ -10,7 +10,7 @@ import {
 import { DeleteService } from './delete.service';
 import { CreateDeleteDto } from './dto/create-delete.dto';
 
-@Controller('/api/v1/delete')
+@Controller('/authorization/api/v1/delete')
 export class DeleteController {
   constructor(private readonly deleteService: DeleteService) {}
 

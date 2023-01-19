@@ -18,7 +18,7 @@ import { UpdateProfileDto } from './dto/update-profile.dto';
 import { IProfiles } from './interfaces/i-profiles.interfaces';
 import { ProfilesService } from './profiles.service';
 
-@Controller('api/v1/profiles')
+@Controller('authorization/api/v1/profiles')
 export class ProfilesController {
   constructor(private readonly profilesService: ProfilesService) { }
 

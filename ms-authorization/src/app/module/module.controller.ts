@@ -17,7 +17,7 @@ import { UpdateModuleDto } from './dto/update-module.dto';
 import { ModuleService } from './module.service';
 
 
-@Controller('api/v1/modules')
+@Controller('authorization/api/v1/modules')
 export class ModuleController {
   constructor(private readonly moduleService: ModuleService) { }
 

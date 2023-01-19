@@ -10,7 +10,7 @@ import {
 import { CreateUpdateDto } from './dto/create-update.dto';
 import { UpdateService } from './update.service';
 
-@Controller('api/v1/update')
+@Controller('authorization/api/v1/update')
 export class UpdateController {
   constructor(private readonly updateService: UpdateService) {}
 

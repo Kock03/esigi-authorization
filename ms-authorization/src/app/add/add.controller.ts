@@ -10,7 +10,7 @@ import {
 import { AddService } from './add.service';
 import { CreateAddDto } from './dto/create-add.dto';
 
-@Controller('/api/v1/add')
+@Controller('/authorization/api/v1/add')
 export class AddController {
   constructor(private readonly addService: AddService) {}
 
